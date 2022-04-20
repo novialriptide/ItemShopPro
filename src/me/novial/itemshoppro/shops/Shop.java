@@ -8,9 +8,9 @@ import org.bukkit.inventory.ItemStack;
 import java.util.UUID;
 
 public class Shop {
-    public UUID ownerUUID;
-    public UUID[] blockedPlayers;
-    public UUID[] playersWithPermission;
+    public Player ownerUUID;
+    public Player[] blockedPlayers;
+    public Player[] playersWithPermission;
 
     public ItemStack product;
     public int productQuantity;
@@ -18,8 +18,8 @@ public class Shop {
     public int currencyQuantity;
     public Chest inventoryBlock;
 
-    public Shop(UUID ownerUUID, ItemStack product, int productQuantity, ItemStack currency, int currencyQuantity, Chest inventoryBlock) {
-        this.ownerUUID = ownerUUID;
+    public Shop(Player owner, ItemStack product, int productQuantity, ItemStack currency, int currencyQuantity, Chest inventoryBlock) {
+        this.owner = owner;
         this.product = product;
         this.currency = currency;
         this.inventoryBlock = inventoryBlock;

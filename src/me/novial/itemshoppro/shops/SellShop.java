@@ -11,13 +11,14 @@ import java.util.List;
 import java.util.UUID;
 
 public class SellShop extends Shop {
-    public SellShop(UUID ownerUUID, ItemStack product, int productQuantity, ItemStack currency, int currencyQuantity, Chest inventoryBlock) {
-        super(ownerUUID, product, productQuantity, currency, currencyQuantity, inventoryBlock);
+    public SellShop(Player owner, ItemStack product, int productQuantity, ItemStack currency, int currencyQuantity, Chest inventoryBlock) {
+        super(owner, product, productQuantity, currency, currencyQuantity, inventoryBlock);
     }
 
+    /** Sells an item to the Shop. **/
     public void sellItem(Player player) {
-        List<UUID> blockedPlayers = new ArrayList<>(Arrays.asList(this.blockedPlayers));
-        if (blockedPlayers.contains(player.getUniqueId())) {
+        List<Player> blockedPlayers = new ArrayList<>(Arrays.asList(this.blockedPlayers));
+        if (blockedPlayers.contains(player)) {
             return;
         }
     }
