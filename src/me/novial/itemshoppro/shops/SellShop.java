@@ -1,6 +1,7 @@
 package me.novial.itemshoppro.shops;
 
 import org.bukkit.block.Chest;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -11,8 +12,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class SellShop extends Shop {
-    public SellShop(Player owner, ItemStack product, int productQuantity, ItemStack currency, int currencyQuantity, Chest inventoryBlock) {
-        super(owner, product, productQuantity, currency, currencyQuantity, inventoryBlock);
+    public SellShop(
+            Player owner,
+            ItemStack product, int productQuantity,
+            ItemStack currency, int currencyQuantity,
+            Chest inventoryBlock, Sign sign
+    ) {
+        super(owner, product, productQuantity, currency, currencyQuantity, inventoryBlock, sign);
     }
 
     /** Sells an item to the Shop. **/

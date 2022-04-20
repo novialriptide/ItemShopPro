@@ -48,9 +48,9 @@ public class CreateShopSign {
          *  - log for
          *  - for 1 diamond
          */
-        Sign sign = (Sign) event.getBlock();
         if (shopCreationQueue.keySet().contains(player)) {
             Queue queue = shopCreationQueue.get(player);
+            Sign sign = (Sign) event.getBlock();
 
             if (lines[0] == "[ItemShopPro]" && sign == queue.itemShopSign) {
                 shopCreationQueue.remove(player);
@@ -67,7 +67,7 @@ public class CreateShopSign {
                 Material currencyMaterial = Material.matchMaterial(line2[1]);
                 ItemStack currency = new ItemStack(currencyMaterial);
 
-                Shop shop = new Shop(player, product, productQuantity, currency, currencyQuantity, queue.chest);
+                Shop shop = new Shop(player, product, productQuantity, currency, currencyQuantity, queue.chest, sign);
             }
         }
     }

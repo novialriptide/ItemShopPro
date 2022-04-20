@@ -1,6 +1,7 @@
 package me.novial.itemshoppro.shops;
 
 import org.bukkit.block.Chest;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,14 +18,21 @@ public class Shop {
     public ItemStack currency;
     public int currencyQuantity;
     public Chest inventoryBlock;
+    public Sign sign;
 
-    public Shop(Player owner, ItemStack product, int productQuantity, ItemStack currency, int currencyQuantity, Chest inventoryBlock) {
+    public Shop(
+            Player owner,
+            ItemStack product, int productQuantity,
+            ItemStack currency, int currencyQuantity,
+            Chest inventoryBlock, Sign sign
+    ) {
         this.owner = owner;
         this.product = product;
         this.currency = currency;
         this.inventoryBlock = inventoryBlock;
         this.productQuantity = productQuantity;
         this.currencyQuantity = currencyQuantity;
+        this.sign = sign;
     }
 
     /** Gives the player a read-only view of the chest's inventory. **/
