@@ -48,27 +48,27 @@ public class CreateShopSign {
          *  - log for
          *  - for 1 diamond
          */
-
-        if (lines[0] == "[ItemShopPro]" && shopCreationQueue.keySet().contains(player)) {
+        Sign sign = (Sign) event.getBlock();
+        if (shopCreationQueue.keySet().contains(player)) {
             Queue queue = shopCreationQueue.get(player);
-            shopCreationQueue.remove(player);
 
-            Block block = event.getBlock();
-            Sign sign = (Sign) block;
+            if (lines[0] == "[ItemShopPro]" && sign == queue.itemShopSign) {
+                shopCreationQueue.remove(player);
 
-            String[] line1 = lines[1].split(" ");
-            String[] line2 = lines[2].split(" ");
+                String[] line1 = lines[1].split(" ");
+                String[] line2 = lines[2].split(" ");
 
-            int productQuantity = Integer.parseInt(line1[0]);
-            Material productMaterial = Material.matchMaterial(line1[1]);
+                int productQuantity = Integer.parseInt(line1[0]);
+                Material productMaterial = Material.matchMaterial(line1[1]);
 
-            ItemStack product = new ItemStack(productMaterial);
-            int currencyQuantity = Integer.parseInt(line2[0]);
+                ItemStack product = new ItemStack(productMaterial);
+                int currencyQuantity = Integer.parseInt(line2[0]);
 
-            Material currencyMaterial = Material.matchMaterial(line2[1]);
-            ItemStack currency = new ItemStack(currencyMaterial);
+                Material currencyMaterial = Material.matchMaterial(line2[1]);
+                ItemStack currency = new ItemStack(currencyMaterial);
 
-            Shop shop = new Shop(player, product, productQuantity, currency, currencyQuantity, queue.chest);
+                Shop shop = new Shop(player, product, productQuantity, currency, currencyQuantity, queue.chest);
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.UUID;
 
 public class Shop {
-    public Player ownerUUID;
+    public Player owner;
     public Player[] blockedPlayers;
     public Player[] playersWithPermission;
 
