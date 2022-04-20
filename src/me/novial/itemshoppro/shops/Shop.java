@@ -13,24 +13,22 @@ public class Shop {
     public UUID[] playersWithPermission;
 
     public ItemStack product;
+    public int productQuantity;
     public ItemStack currency;
+    public int currencyQuantity;
     public Chest inventoryBlock;
 
-    public Shop(UUID ownerUUID, ItemStack product, ItemStack currency, Chest inventoryBlock) {
+    public Shop(UUID ownerUUID, ItemStack product, int productQuantity, ItemStack currency, int currencyQuantity, Chest inventoryBlock) {
         this.ownerUUID = ownerUUID;
         this.product = product;
         this.currency = currency;
         this.inventoryBlock = inventoryBlock;
+        this.productQuantity = productQuantity;
+        this.currencyQuantity = currencyQuantity;
     }
 
     /** Gives the player a read-only view of the chest's inventory. **/
     public void seeInventory(Player player) {
         player.openInventory(this.inventoryBlock.getInventory());
-    }
-
-    /** Returns a boolean whether the shop is in stock or not. **/
-    public boolean inStock() {
-        Inventory inventory = this.inventoryBlock.getBlockInventory();
-        return inventory.contains(this.product);
     }
 }
