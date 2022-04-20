@@ -1,5 +1,7 @@
 package me.novial.itemshoppro.commands;
 
+import me.novial.itemshoppro.commands.itemShopProSubCommands.SubCommandInfo;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +16,7 @@ public class CommandItemShopPro implements CommandExecutor {
 
         if (label.equalsIgnoreCase("itemshoppro")) {
             if (args[0].equalsIgnoreCase("info") && args.length == 1) {
-                // call func outside file here
+                SubCommandInfo.subCommandInfo(sender, command);
             }
         }
 

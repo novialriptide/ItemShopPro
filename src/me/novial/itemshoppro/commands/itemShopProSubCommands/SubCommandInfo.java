@@ -5,12 +5,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SubCommandInfo {
-    public boolean subCommandInfo(CommandSender sender, Command command) {
-        Player player;
+    public static void subCommandInfo(CommandSender sender, Command command) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
         }
 
-        player.sendMessage("Plugin by Novial");
+        sender.sendMessage("ItemShopPro by Novial.");
     }
 }
