@@ -1,4 +1,4 @@
-package me.novial.itemshoppro;
+package me.novial.itemshoppro.shops;
 
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
