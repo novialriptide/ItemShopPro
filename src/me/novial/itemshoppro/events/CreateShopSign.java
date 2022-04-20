@@ -1,5 +1,6 @@
 package me.novial.itemshoppro.events;
 
+import me.novial.itemshoppro.Main;
 import me.novial.itemshoppro.Queue;
 import me.novial.itemshoppro.shops.Shop;
 import org.bukkit.Material;
@@ -68,6 +69,7 @@ public class CreateShopSign {
                 ItemStack currency = new ItemStack(currencyMaterial);
 
                 Shop shop = new Shop(player, product, productQuantity, currency, currencyQuantity, queue.chest, sign);
+                Main.shopManager.shops.add(shop);
             }
         }
     }

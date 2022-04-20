@@ -2,8 +2,10 @@ package me.novial.itemshoppro.shops;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import java.util.ArrayList;
+
 public class ShopManager {
-    public Shop[] shops;
+    public ArrayList<Shop> shops = new ArrayList<>();
 
     public ShopManager() {
 
