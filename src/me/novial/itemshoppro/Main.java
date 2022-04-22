@@ -9,6 +9,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        this.getServer().getConsoleSender().sendMessage("Loading commands...");
         this.getCommand("itemshoppro").setExecutor((new CommandItemShopPro()));
     }
 }
