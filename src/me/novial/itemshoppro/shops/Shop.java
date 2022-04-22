@@ -32,6 +32,7 @@ public class Shop {
         this.sign = sign;
     }
 
+    /** Getters **/
     public int getProductQuantity() {
         return this.product.getAmount();
     }
