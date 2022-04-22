@@ -12,13 +12,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class BuyShop extends Shop {
-    public BuyShop(
-            Player owner,
-            ItemStack product, int productQuantity,
-            ItemStack currency, int currencyQuantity,
-            Chest inventoryBlock, Sign sign
-    ) {
-        super(owner, product, productQuantity, currency, currencyQuantity, inventoryBlock, sign);
+
+    public BuyShop(Player owner, ItemStack product, ItemStack currency, Chest inventoryBlock, Sign sign) {
+        super(owner, product, currency, inventoryBlock, sign);
     }
 
     /** Purchases an item from the Shop. **/

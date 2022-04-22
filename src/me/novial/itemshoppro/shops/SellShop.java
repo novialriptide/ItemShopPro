@@ -12,13 +12,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class SellShop extends Shop {
-    public SellShop(
-            Player owner,
-            ItemStack product, int productQuantity,
-            ItemStack currency, int currencyQuantity,
-            Chest inventoryBlock, Sign sign
-    ) {
-        super(owner, product, productQuantity, currency, currencyQuantity, inventoryBlock, sign);
+
+    public SellShop(Player owner, ItemStack product, ItemStack currency, Chest inventoryBlock, Sign sign) {
+        super(owner, product, currency, inventoryBlock, sign);
     }
 
     /** Sells an item to the Shop. **/

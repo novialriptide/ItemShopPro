@@ -14,24 +14,21 @@ public class Shop {
     public Player[] playersWithPermission;
 
     public ItemStack product;
-    public int productQuantity;
     public ItemStack currency;
-    public int currencyQuantity;
     public Chest inventoryBlock;
     public Sign sign;
 
     public Shop(
             Player owner,
-            ItemStack product, int productQuantity,
-            ItemStack currency, int currencyQuantity,
-            Chest inventoryBlock, Sign sign
+            ItemStack product,
+            ItemStack currency,
+            Chest inventoryBlock,
+            Sign sign
     ) {
         this.owner = owner;
         this.product = product;
         this.currency = currency;
         this.inventoryBlock = inventoryBlock;
-        this.productQuantity = productQuantity;
-        this.currencyQuantity = currencyQuantity;
         this.sign = sign;
     }
 

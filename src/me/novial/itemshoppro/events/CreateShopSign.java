@@ -62,13 +62,13 @@ public class CreateShopSign {
                 int productQuantity = Integer.parseInt(line1[0]);
                 Material productMaterial = Material.matchMaterial(line1[1]);
 
-                ItemStack product = new ItemStack(productMaterial);
+                ItemStack product = new ItemStack(productMaterial, productQuantity);
                 int currencyQuantity = Integer.parseInt(line2[0]);
 
                 Material currencyMaterial = Material.matchMaterial(line2[1]);
-                ItemStack currency = new ItemStack(currencyMaterial);
+                ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
-                Shop shop = new Shop(player, product, productQuantity, currency, currencyQuantity, queue.chest, sign);
+                Shop shop = new Shop(player, product, currency, queue.chest, sign);
                 Main.shopManager.shops.add(shop);
             }
         }
