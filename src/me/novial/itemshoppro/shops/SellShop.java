@@ -15,7 +15,7 @@ public class SellShop extends Shop {
     }
 
     /** Sells an item to the Shop. **/
-    public void sellItem(Player player) {
+    public boolean sellItem(Player player) {
         Inventory chestInventory = this.inventoryBlock.getInventory();
         Inventory playerInventory = player.getInventory();
 
@@ -25,9 +25,10 @@ public class SellShop extends Shop {
 
             chestInventory.removeItem(currency);
             playerInventory.addItem(currency);
+            return true;
         }
 
-        player.sendMessage("Successful transaction");
+        return false;
     }
 
     /** Returns a boolean whether the shop is in stock or not. **/

@@ -40,19 +40,37 @@ public class PlayerInteractShopSign {
             return;
         }
 
+        boolean success = false;
+        String shopType = null;
         if (shop instanceof BuyShop) {
             BuyShop buyShop = (BuyShop) shop;
-            buyShop.purchaseItem(player);
+            success = buyShop.purchaseItem(player);
+            shopType = "purchased";
         }
 
         else if (shop instanceof SellShop) {
             SellShop sellShop = (SellShop) shop;
-            sellShop.sellItem(player);
+            success = sellShop.sellItem(player);
+            shopType = "sold";
         }
 
         else {
-            player.sendMessage("An internal error has occurred.");
+            player.sendMessage("An internal error has occurred. Please contact the developer.");
         }
 
+        if (success) {
+            player.sendMessage(String.format(
+                    "You have %s %d %s for %d %s.",
+                    shopType,
+                    shop.getProductQuantity(),
+                    shop.product.toString(),
+                    shop.getCurrencyQuantity(),
+                    shop.currency.toString()
+            ));
+        }
+
+        else {
+            player.sendMessage("Not enough funds.");
+        }
     }
 }

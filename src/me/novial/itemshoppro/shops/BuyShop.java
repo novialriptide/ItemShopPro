@@ -15,7 +15,7 @@ public class BuyShop extends Shop {
     }
 
     /** Purchases an item from the Shop. **/
-    public void purchaseItem(Player player) {
+    public boolean purchaseItem(Player player) {
         Inventory chestInventory = this.inventoryBlock.getInventory();
         Inventory playerInventory = player.getInventory();
 
@@ -25,9 +25,10 @@ public class BuyShop extends Shop {
 
             playerInventory.removeItem(currency);
             chestInventory.addItem(currency);
+            return true;
         }
 
-        player.sendMessage("Successful transaction");
+        return false;
     }
 
     /** Returns a boolean whether the shop is in stock or not. **/
