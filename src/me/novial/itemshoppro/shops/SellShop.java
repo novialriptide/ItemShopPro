@@ -16,11 +16,6 @@ public class SellShop extends Shop {
 
     /** Sells an item to the Shop. **/
     public void sellItem(Player player) {
-        List<Player> blockedPlayers = new ArrayList<>(Arrays.asList(this.blockedPlayers));
-        if (blockedPlayers.contains(player)) {
-            return;
-        }
-
         Inventory chestInventory = this.inventoryBlock.getInventory();
         Inventory playerInventory = player.getInventory();
 

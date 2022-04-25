@@ -3,10 +3,7 @@ package me.novial.itemshoppro.shops;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.UUID;
 
 public class Shop {
     public Player owner;

@@ -16,11 +16,6 @@ public class BuyShop extends Shop {
 
     /** Purchases an item from the Shop. **/
     public void purchaseItem(Player player) {
-        List<Player> blockedPlayers = new ArrayList<>(Arrays.asList(this.blockedPlayers));
-        if (blockedPlayers.contains(player)) {
-            return;
-        }
-
         Inventory chestInventory = this.inventoryBlock.getInventory();
         Inventory playerInventory = player.getInventory();
 
