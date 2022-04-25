@@ -1,9 +1,0 @@
-name: ItemShopPro
-main: me.novial.itemshoppro.Main
-author: Novial
-version: 1.0
-commands:
-  itemshoppro:
-    description: Shows information about the plugin.
-    usage: /<command>
-    permission: itemshoppro.info
