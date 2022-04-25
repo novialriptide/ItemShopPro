@@ -24,7 +24,7 @@ public class BuyShop extends Shop {
         Inventory chestInventory = this.inventoryBlock.getInventory();
         Inventory playerInventory = player.getInventory();
 
-        if (chestInventory.contains(product) && playerInventory.contains(currency)) {
+        if (chestInventory.contains(currency) && playerInventory.contains(product)) {
             chestInventory.removeItem(product);
             playerInventory.addItem(product);
 
