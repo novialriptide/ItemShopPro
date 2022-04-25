@@ -5,7 +5,17 @@
 </div>
 
 ## Features
- - Supports 1.17.1 or newer.
+ - Supports 1.17.1 or newer
+ - Lightweight & easy to use
 
 ## Installation
-Drag and drop into your plugins folder and restart or reload the server.
+Drag and drop into your plugins folder and 
+restart or reload the server.
+
+## Build & Run From Source
+1. Use `spigot-1.17.1.jar` as your dependency
+2. Compile as a `.jar` file with 
+`me.novial.itemshoppro.Main` being the main class.
+3. Drag and drop the compiled `.jar` file to your `plugins` folder.
+
+Download spigot jar files: https://getbukkit.org/
