@@ -7,13 +7,17 @@ import me.novial.itemshoppro.shops.Shop;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PlayerInteractShopSign {
+public class PlayerInteractShopSign implements Listener {
+
+    @EventHandler
     public void onSignRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();

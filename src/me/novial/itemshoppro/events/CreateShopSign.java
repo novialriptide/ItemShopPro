@@ -8,16 +8,19 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
-public class CreateShopSign {
+public class CreateShopSign implements Listener {
     public HashMap<Player, Queue> shopCreationQueue = new HashMap<>();
 
     /** Create ItemShopPro Chest Shop Event. (Part 1) **/
+    @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         Block placedBlock = event.getBlockPlaced();
@@ -29,6 +32,7 @@ public class CreateShopSign {
     }
 
     /** Create ItemShopPro Chest Shop Event. (Part 2) **/
+    @EventHandler
     public void onSignChange(SignChangeEvent event) {
         Player player = event.getPlayer();
         String[] lines = event.getLines();
