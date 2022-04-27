@@ -74,6 +74,23 @@ public class CreateShopSign implements Listener {
 
                 Shop shop = new Shop(player, product, currency, queue.chest, sign);
                 Main.shopManager.shops.add(shop);
+
+                String parent = player.getUniqueId() + ".";
+
+                /** Add Shop to shops.yml file. **/
+                Main.shopsConfig.set(parent + "chestX", shop.chest.getX());
+                Main.shopsConfig.set(parent + "chestY", shop.chest.getY());
+                Main.shopsConfig.set(parent + "chestZ", shop.chest.getZ());
+
+                Main.shopsConfig.set(parent + "signX", shop.chest.getX());
+                Main.shopsConfig.set(parent + "signY", shop.chest.getY());
+                Main.shopsConfig.set(parent + "signZ", shop.chest.getZ());
+
+                Main.shopsConfig.set(parent + "currency", shop.currency.toString());
+                Main.shopsConfig.set(parent + "currencyQuantity", shop.getCurrencyQuantity());
+
+                Main.shopsConfig.set(parent + "product", shop.product.toString());
+                Main.shopsConfig.set(parent + "productQuantity", shop.getProductQuantity());
             }
         }
     }

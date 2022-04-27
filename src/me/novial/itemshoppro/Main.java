@@ -18,8 +18,8 @@ import java.io.IOException;
 public class Main extends JavaPlugin {
     public static ShopManager shopManager = new ShopManager();
 
-    private File shopsFile;
-    private FileConfiguration shopsConfig;
+    public static File shopsFile;
+    public static FileConfiguration shopsConfig;
 
     @Override
     public void onEnable() {
