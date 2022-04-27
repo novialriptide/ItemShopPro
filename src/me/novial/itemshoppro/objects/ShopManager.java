@@ -25,7 +25,7 @@ public class ShopManager {
 
     public Shop findShopFromChest(Chest chest) {
         for (Shop shop : Main.shopManager.shops) {
-            if (shop.inventoryBlock == chest) {
+            if (shop.chest == chest) {
                 return shop;
             }
         }

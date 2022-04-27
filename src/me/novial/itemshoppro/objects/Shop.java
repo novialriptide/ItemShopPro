@@ -12,20 +12,20 @@ public class Shop {
 
     public ItemStack product;
     public ItemStack currency;
-    public Chest inventoryBlock;
+    public Chest chest;
     public Sign sign;
 
     public Shop(
             Player owner,
             ItemStack product,
             ItemStack currency,
-            Chest inventoryBlock,
+            Chest chest,
             Sign sign
     ) {
         this.owner = owner;
         this.product = product;
         this.currency = currency;
-        this.inventoryBlock = inventoryBlock;
+        this.chest = chest;
         this.sign = sign;
     }
 

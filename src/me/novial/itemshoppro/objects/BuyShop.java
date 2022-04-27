@@ -14,7 +14,7 @@ public class BuyShop extends Shop {
 
     /** Purchases an item from the Shop. Returns a boolean whether the transaction has been successful or not. **/
     public boolean purchaseItem(Player player) {
-        Inventory chestInventory = this.inventoryBlock.getInventory();
+        Inventory chestInventory = this.chest.getInventory();
         Inventory playerInventory = player.getInventory();
 
         if (chestInventory.contains(currency) && playerInventory.contains(product)) {
@@ -31,7 +31,7 @@ public class BuyShop extends Shop {
 
     /** Returns a boolean whether the shop is in stock or not. **/
     public boolean inStock() {
-        Inventory inventory = this.inventoryBlock.getBlockInventory();
+        Inventory inventory = this.chest.getBlockInventory();
         return inventory.contains(this.product);
     }
 }
