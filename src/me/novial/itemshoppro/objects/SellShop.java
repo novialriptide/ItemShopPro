@@ -1,12 +1,10 @@
-package me.novial.itemshoppro.shops;
+package me.novial.itemshoppro.objects;
 
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.*;
 
 public class SellShop extends Shop {
 

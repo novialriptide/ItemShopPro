@@ -1,7 +1,7 @@
 package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
-import me.novial.itemshoppro.shops.Shop;
+import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;

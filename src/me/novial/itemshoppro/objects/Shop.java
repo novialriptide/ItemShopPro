@@ -1,4 +1,4 @@
-package me.novial.itemshoppro.shops;
+package me.novial.itemshoppro.objects;
 
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;

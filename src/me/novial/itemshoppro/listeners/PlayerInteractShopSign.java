@@ -1,9 +1,9 @@
 package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
-import me.novial.itemshoppro.shops.BuyShop;
-import me.novial.itemshoppro.shops.SellShop;
-import me.novial.itemshoppro.shops.Shop;
+import me.novial.itemshoppro.objects.BuyShop;
+import me.novial.itemshoppro.objects.SellShop;
+import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
