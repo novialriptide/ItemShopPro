@@ -7,10 +7,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.util.ArrayList;
 
 public class ShopManager {
-    public ArrayList<Shop> shops = new ArrayList<>();
+    public ArrayList<Shop> shops;
 
     public ShopManager() {
-
+        this.shops = new ArrayList<Shop>();
     }
 
     public Shop findShopFromSign(Sign sign) {
