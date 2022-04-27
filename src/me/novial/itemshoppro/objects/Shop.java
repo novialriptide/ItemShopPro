@@ -1,5 +1,6 @@
 package me.novial.itemshoppro.objects;
 
+import org.bukkit.World;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -14,6 +15,7 @@ public class Shop {
     public ItemStack currency;
     public Chest chest;
     public Sign sign;
+    public World world;
 
     public Shop(
             Player owner,
@@ -27,6 +29,7 @@ public class Shop {
         this.currency = currency;
         this.chest = chest;
         this.sign = sign;
+        this.world = chest.getWorld();
     }
 
     /** Getters **/

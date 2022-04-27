@@ -1,11 +1,19 @@
 package me.novial.itemshoppro.objects;
 
 import me.novial.itemshoppro.Main;
+import net.minecraft.core.Vector3f;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.UUID;
+import java.util.Vector;
 
 public class ShopManager {
     public ArrayList<Shop> shops;
@@ -33,6 +41,25 @@ public class ShopManager {
     }
 
     public void loadShopsFromYml(YamlConfiguration ymlFile) {
+        Set<String> players = ymlFile.getKeys(true);
 
+        for (String stringUUID : players) {
+            Player player = Bukkit.getPlayer(UUID.fromString(stringUUID));
+            String parent = stringUUID + ".";
+            World world = Bukkit.getWorld(yml.get(parent + "world"));
+
+            int chestX = (int) ymlFile.get(parent + "chestX");
+            int chestY = (int) ymlFile.get(parent + "chestY");
+            int chestZ = (int) ymlFile.get(parent + "chestZ");
+            Chest chest = (Chest) world.getBlockAt(chestX, chestY, chestZ);
+
+            int signX = (int) ymlFile.get(parent + "signX");
+            int signY = (int) ymlFile.get(parent + "signY");
+            int signZ = (int) ymlFile.get(parent + "signZ");
+            Sign sign = (Sign) world.getBlockAt(signX, signY, signZ);
+
+
+
+        }
     }
 }
