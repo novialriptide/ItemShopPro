@@ -1,4 +1,4 @@
-package me.novial.itemshoppro.events;
+package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
 import me.novial.itemshoppro.Queue;

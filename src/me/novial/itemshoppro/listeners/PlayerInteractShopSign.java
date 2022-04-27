@@ -1,4 +1,4 @@
-package me.novial.itemshoppro.events;
+package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
 import me.novial.itemshoppro.shops.BuyShop;
@@ -56,10 +56,6 @@ public class PlayerInteractShopSign implements Listener {
             SellShop sellShop = (SellShop) shop;
             success = sellShop.sellItem(player);
             shopType = "sold";
-        }
-
-        else {
-            player.sendMessage("An internal error has occurred. Please contact the developer.");
         }
 
         if (success) {

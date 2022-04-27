@@ -1,8 +1,8 @@
 package me.novial.itemshoppro;
 
 import me.novial.itemshoppro.commands.CommandItemShopPro;
-import me.novial.itemshoppro.events.CreateShopSign;
-import me.novial.itemshoppro.events.PlayerInteractShopSign;
+import me.novial.itemshoppro.listeners.CreateShopSign;
+import me.novial.itemshoppro.listeners.PlayerInteractShopSign;
 import me.novial.itemshoppro.shops.ShopManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
