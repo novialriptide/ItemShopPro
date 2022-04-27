@@ -14,7 +14,7 @@ public class BuyShop extends Shop {
         super(owner, product, currency, inventoryBlock, sign);
     }
 
-    /** Purchases an item from the Shop. **/
+    /** Purchases an item from the Shop. Returns a boolean whether the transaction has been successful or not. **/
     public boolean purchaseItem(Player player) {
         Inventory chestInventory = this.inventoryBlock.getInventory();
         Inventory playerInventory = player.getInventory();

@@ -14,7 +14,7 @@ public class SellShop extends Shop {
         super(owner, product, currency, inventoryBlock, sign);
     }
 
-    /** Sells an item to the Shop. **/
+    /** Sells an item to the Shop. Returns a boolean whether the transaction has been successful or not. **/
     public boolean sellItem(Player player) {
         Inventory chestInventory = this.inventoryBlock.getInventory();
         Inventory playerInventory = player.getInventory();
