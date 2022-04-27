@@ -37,9 +37,4 @@ public class Shop {
     public int getCurrencyQuantity() {
         return this.currency.getAmount();
     }
-
-    /** Gives the player a read-only view of the chest's inventory. **/
-    public void seeInventory(Player player) {
-        player.openInventory(this.inventoryBlock.getInventory());
-    }
 }
