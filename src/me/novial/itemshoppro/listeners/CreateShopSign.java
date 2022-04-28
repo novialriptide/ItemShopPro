@@ -2,6 +2,8 @@ package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
 import me.novial.itemshoppro.Queue;
+import me.novial.itemshoppro.objects.BuyShop;
+import me.novial.itemshoppro.objects.SellShop;
 import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -49,28 +51,25 @@ public class CreateShopSign implements Listener {
          *
          * Here's an Example
          *  - [ItemShopProB]
-         *  - 1 diamond
-         *  - 64 log
-         *
-         * Here's an example of the output
-         *  - USERNAME
-         *  - Purchase 64
-         *  - log for
-         *  - for 1 diamond
+         *  - C: 1 diamond
+         *  - B: 64 log
          */
         if (shopCreationQueue.keySet().contains(player)) {
             Queue queue = shopCreationQueue.get(player);
             Sign sign = (Sign) event.getBlock().getState();
 
             if (lines[0].equals("[ItemShopPro]") && sign.equals(queue.itemShopSign)) {
-                String[] line1 = lines[1].split(" ");
-                String[] line2 = lines[2].split(" ");
+                String line1Prefix = lines[1].substring(0, 3);
+                String line2Prefix = lines[2].substring(0, 3);
+                String[] line1 = lines[1].substring(3).split(" ");
+                String[] line2 = lines[2].substring(3).split(" ");
 
                 int productQuantity;
                 try {
                     productQuantity = Integer.parseInt(line1[0]);
                 }
                 catch (NumberFormatException exception) {
+                    player.sendMessage(line1[0]);
                     player.sendMessage("Invalid product quantity.");
                     return;
                 }
@@ -89,13 +88,24 @@ public class CreateShopSign implements Listener {
                 Material currencyMaterial = Material.getMaterial(line2[1], false);
                 ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
-                Shop shop = new Shop(player, product, currency, queue.chest, sign);
+                Shop shop = null;
+                if (line2Prefix.equals("B: ")) {
+                    shop = new BuyShop(player, product, currency, queue.chest, sign);
+                }
+                else if (line2Prefix.equals("S: ")) {
+                    shop = new SellShop(player, product, currency, queue.chest, sign);
+                }
+                else {
+                    player.sendMessage("Incorrect shop type.");
+                    return;
+                }
+
                 Main.shopManager.shops.add(shop);
 
                 String parent = player.getUniqueId() + ".";
 
                 /** Add Shop to shops.yml file. **/
-                Main.shopsConfig.set(parent + "world", shop.world.getName());
+                Main.shopsConfig.set(parent + "world", shop.world.getUID().toString());
 
                 Main.shopsConfig.set(parent + "chestX", shop.chest.getX());
                 Main.shopsConfig.set(parent + "chestY", shop.chest.getY());

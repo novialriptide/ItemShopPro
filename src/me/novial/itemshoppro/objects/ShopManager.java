@@ -1,7 +1,6 @@
 package me.novial.itemshoppro.objects;
 
 import me.novial.itemshoppro.Main;
-import net.minecraft.core.Vector3f;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -26,7 +25,7 @@ public class ShopManager {
 
     public Shop findShopFromSign(Sign sign) {
         for (Shop shop : Main.shopManager.shops) {
-            if (shop.sign == sign) {
+            if (shop.sign.equals(sign)) {
                 return shop;
             }
         }
@@ -35,7 +34,7 @@ public class ShopManager {
 
     public Shop findShopFromChest(Chest chest) {
         for (Shop shop : Main.shopManager.shops) {
-            if (shop.chest == chest) {
+            if (shop.chest.equals(chest)) {
                 return shop;
             }
         }
@@ -55,12 +54,12 @@ public class ShopManager {
             int chestX = (int) ymlFile.get(parent + "chestX");
             int chestY = (int) ymlFile.get(parent + "chestY");
             int chestZ = (int) ymlFile.get(parent + "chestZ");
-            Chest chest = (Chest) world.getBlockAt(chestX, chestY, chestZ);
+            Chest chest = (Chest) world.getBlockAt(chestX, chestY, chestZ).getState();
 
             int signX = (int) ymlFile.get(parent + "signX");
             int signY = (int) ymlFile.get(parent + "signY");
             int signZ = (int) ymlFile.get(parent + "signZ");
-            Sign sign = (Sign) world.getBlockAt(signX, signY, signZ);
+            Sign sign = (Sign) world.getBlockAt(signX, signY, signZ).getState();
 
             int currencyQuantity = (int) ymlFile.get(parent + "currencyQuantity");
             String currencyName = (String) ymlFile.get(parent + "currency");

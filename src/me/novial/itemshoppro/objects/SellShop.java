@@ -31,7 +31,7 @@ public class SellShop extends Shop {
 
     /** Returns a boolean whether the shop is in stock or not. **/
     public boolean inStock() {
-        Inventory inventory = this.chest.getBlockInventory();
+        Inventory inventory = this.chest.getInventory();
         return inventory.contains(this.currency);
     }
 }

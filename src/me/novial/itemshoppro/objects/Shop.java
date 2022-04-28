@@ -6,10 +6,12 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+
 public class Shop {
     public Player owner;
-    public Player[] blockedPlayers;
-    public Player[] playersWithPermission;
+    public ArrayList<Player> blockedPlayers;
+    public ArrayList<Player> playersWithPermission;
 
     public ItemStack product;
     public ItemStack currency;
@@ -30,6 +32,8 @@ public class Shop {
         this.chest = chest;
         this.sign = sign;
         this.world = chest.getWorld();
+        this.blockedPlayers = new ArrayList<>();
+        this.playersWithPermission = new ArrayList<>();
     }
 
     /** Getters **/

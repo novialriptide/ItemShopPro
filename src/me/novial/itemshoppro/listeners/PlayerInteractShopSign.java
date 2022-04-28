@@ -5,6 +5,7 @@ import me.novial.itemshoppro.objects.BuyShop;
 import me.novial.itemshoppro.objects.SellShop;
 import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,12 +21,13 @@ public class PlayerInteractShopSign implements Listener {
     @EventHandler
     public void onSignRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
+        BlockState blockState = block.getState();
         Player player = event.getPlayer();
         Sign sign;
 
         /** Check if block is a sign. **/
-        if (block instanceof Sign) {
-            sign = (Sign) block;
+        if (blockState instanceof Sign) {
+            sign = (Sign) blockState;
         }
         else {
             return;
@@ -37,8 +39,7 @@ public class PlayerInteractShopSign implements Listener {
             return;
         }
 
-        List<Player> blockedPlayers = new ArrayList<>(Arrays.asList(shop.blockedPlayers));
-        if (blockedPlayers.contains(player)) {
+        if (shop.blockedPlayers.contains(player)) {
             String ownerName = shop.owner.getDisplayName();
             player.sendMessage("You are blocked from any activity with all shops owned by {}.".format(ownerName));
             return;
@@ -50,12 +51,23 @@ public class PlayerInteractShopSign implements Listener {
             BuyShop buyShop = (BuyShop) shop;
             success = buyShop.purchaseItem(player);
             shopType = "purchased";
+
+            if (!buyShop.inStock()) {
+                player.sendMessage("Out of stock.");
+                return;
+            }
+
         }
 
         else if (shop instanceof SellShop) {
             SellShop sellShop = (SellShop) shop;
             success = sellShop.sellItem(player);
             shopType = "sold";
+
+            if (!sellShop.inStock()) {
+                player.sendMessage("Out of stock.");
+                return;
+            }
         }
 
         if (success) {
@@ -68,7 +80,6 @@ public class PlayerInteractShopSign implements Listener {
                     shop.currency.toString()
             ));
         }
-
         else {
             player.sendMessage("Not enough funds.");
         }
