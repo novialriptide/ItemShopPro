@@ -23,10 +23,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getServer().getConsoleSender().sendMessage("Creating/loading files...");
-        createFiles();
-        shopManager.loadShopsFromYml((YamlConfiguration) shopsConfig);
-
         ConsoleCommandSender commandSender = getServer().getConsoleSender();
         PluginManager pluginManager = getServer().getPluginManager();
 
@@ -37,6 +33,11 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new CreateShopSign(), this);
         pluginManager.registerEvents(new PlayerInteractShopSign(), this);
         pluginManager.registerEvents(new LockChest(), this);
+
+        this.getServer().getConsoleSender().sendMessage("Creating/loading files...");
+        createFiles();
+        shopManager.loadShopsFromYml((YamlConfiguration) shopsConfig);
+        commandSender.sendMessage(String.valueOf(shopManager.shops.size()) + " shops loaded!");
     }
 
     private void createFiles() {

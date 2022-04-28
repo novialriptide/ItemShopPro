@@ -1,5 +1,6 @@
 package me.novial.itemshoppro.objects;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -17,7 +18,7 @@ public class BuyShop extends Shop {
         Inventory chestInventory = this.chest.getInventory();
         Inventory playerInventory = player.getInventory();
 
-        if (chestInventory.contains(currency) && playerInventory.contains(product)) {
+        if (chestInventory.containsAtLeast(product, 1) && playerInventory.containsAtLeast(currency, 1)) {
             chestInventory.removeItem(product);
             playerInventory.addItem(product);
 
@@ -31,7 +32,7 @@ public class BuyShop extends Shop {
 
     /** Returns a boolean whether the shop is in stock or not. **/
     public boolean inStock() {
-        Inventory inventory = this.chest.getInventory();
-        return inventory.contains(this.product);
+        Inventory inventory = this.chest.getBlockInventory();
+        return inventory.containsAtLeast(this.product, 1);
     }
 }

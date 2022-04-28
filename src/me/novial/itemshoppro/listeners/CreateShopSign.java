@@ -19,6 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class CreateShopSign implements Listener {
     public HashMap<Player, Queue> shopCreationQueue = new HashMap<>();
@@ -51,8 +52,8 @@ public class CreateShopSign implements Listener {
          *
          * Here's an Example
          *  - [ItemShopProB]
-         *  - C: 1 diamond
-         *  - B: 64 log
+         *  - B: 64 OAK_LOG
+         *  - C: 1 DIAMOND
          */
         if (shopCreationQueue.keySet().contains(player)) {
             Queue queue = shopCreationQueue.get(player);
@@ -89,11 +90,14 @@ public class CreateShopSign implements Listener {
                 ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
                 Shop shop = null;
-                if (line2Prefix.equals("B: ")) {
+                String shopType;
+                if (line1Prefix.equals("B: ")) {
                     shop = new BuyShop(player, product, currency, queue.chest, sign);
+                    shopType = "buy";
                 }
-                else if (line2Prefix.equals("S: ")) {
+                else if (line1Prefix.equals("S: ")) {
                     shop = new SellShop(player, product, currency, queue.chest, sign);
+                    shopType = "sell";
                 }
                 else {
                     player.sendMessage("Incorrect shop type.");
@@ -102,7 +106,7 @@ public class CreateShopSign implements Listener {
 
                 Main.shopManager.shops.add(shop);
 
-                String parent = player.getUniqueId() + ".";
+                String parent = "shops." + UUID.randomUUID().toString() + ".";
 
                 /** Add Shop to shops.yml file. **/
                 Main.shopsConfig.set(parent + "world", shop.world.getUID().toString());
@@ -120,6 +124,9 @@ public class CreateShopSign implements Listener {
 
                 Main.shopsConfig.set(parent + "product", shop.product.getType().name());
                 Main.shopsConfig.set(parent + "productQuantity", shop.getProductQuantity());
+
+                Main.shopsConfig.set(parent + "shopType", shopType);
+                Main.shopsConfig.set(parent + "player", player.getUniqueId().toString());
 
                 Main.shopsConfig.save(Main.shopsFile);
 

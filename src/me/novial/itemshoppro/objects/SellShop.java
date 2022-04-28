@@ -17,7 +17,7 @@ public class SellShop extends Shop {
         Inventory chestInventory = this.chest.getInventory();
         Inventory playerInventory = player.getInventory();
 
-        if (playerInventory.contains(product) && chestInventory.contains(currency)) {
+        if (playerInventory.containsAtLeast(product, 1) && chestInventory.containsAtLeast(currency, 1)) {
             playerInventory.removeItem(product);
             chestInventory.addItem(product);
 
@@ -31,7 +31,7 @@ public class SellShop extends Shop {
 
     /** Returns a boolean whether the shop is in stock or not. **/
     public boolean inStock() {
-        Inventory inventory = this.chest.getInventory();
+        Inventory inventory = this.chest.getBlockInventory();
         return inventory.contains(this.currency);
     }
 }

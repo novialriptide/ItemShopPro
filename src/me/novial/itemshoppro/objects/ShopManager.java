@@ -7,14 +7,12 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.UUID;
-import java.util.Vector;
+import java.util.*;
 
 public class ShopManager {
     public ArrayList<Shop> shops;
@@ -42,11 +40,20 @@ public class ShopManager {
     }
 
     public void loadShopsFromYml(YamlConfiguration ymlFile) {
-        Set<String> players = ymlFile.getKeys(true);
+        ConfigurationSection shopSection = ymlFile.getConfigurationSection("shops");
 
-        for (String stringUUID : players) {
-            Player player = Bukkit.getPlayer(UUID.fromString(stringUUID));
-            String parent = stringUUID + ".";
+        if (shopSection == null) {
+            Bukkit.getConsoleSender().sendMessage("Shops is empty.");
+            return;
+        }
+
+        Set<String> shops = shopSection.getKeys(false);
+
+        for (String shopUUID : shops) {
+            String parent = "shops." + shopUUID + ".";
+
+            String playerUUID = (String) ymlFile.get(parent + "player");
+            Player player = Bukkit.getPlayer(UUID.fromString(playerUUID));
 
             UUID worldUUID = UUID.fromString((String) ymlFile.get(parent + "world"));
             World world = Bukkit.getWorld(worldUUID);
@@ -71,8 +78,19 @@ public class ShopManager {
             Material productMaterial = Material.getMaterial(productName, false);
             ItemStack product = new ItemStack(productMaterial, productQuantity);
 
-            Shop shop = new Shop(player, product, currency, chest, sign);
-            Main.shopManager.shops.add(shop);
+            String shopType = (String) ymlFile.get(parent + "shopType");
+            if (shopType.equals("buy")) {
+                BuyShop shop = new BuyShop(player, product, currency, chest, sign);
+                Main.shopManager.shops.add(shop);
+            }
+            else if (shopType.equals("sell")) {
+                SellShop shop = new SellShop(player, product, currency, chest, sign);
+                Main.shopManager.shops.add(shop);
+            }
+            else {
+                Bukkit.getConsoleSender().sendMessage("Something went wrong loading this shop.");
+            }
+
         }
     }
 }

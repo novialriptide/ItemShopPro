@@ -49,25 +49,26 @@ public class PlayerInteractShopSign implements Listener {
         String shopType = null;
         if (shop instanceof BuyShop) {
             BuyShop buyShop = (BuyShop) shop;
-            success = buyShop.purchaseItem(player);
-            shopType = "purchased";
 
             if (!buyShop.inStock()) {
                 player.sendMessage("Out of stock.");
                 return;
             }
 
+            success = buyShop.purchaseItem(player);
+            shopType = "purchased";
         }
 
         else if (shop instanceof SellShop) {
             SellShop sellShop = (SellShop) shop;
-            success = sellShop.sellItem(player);
-            shopType = "sold";
 
             if (!sellShop.inStock()) {
                 player.sendMessage("Out of stock.");
                 return;
             }
+
+            success = sellShop.sellItem(player);
+            shopType = "sold";
         }
 
         if (success) {
@@ -75,9 +76,9 @@ public class PlayerInteractShopSign implements Listener {
                     "You have %s %d %s for %d %s.",
                     shopType,
                     shop.getProductQuantity(),
-                    shop.product.toString(),
+                    shop.product.getType().toString(),
                     shop.getCurrencyQuantity(),
-                    shop.currency.toString()
+                    shop.currency.getType().toString()
             ));
         }
         else {
