@@ -46,7 +46,9 @@ public class ShopManager {
         for (String stringUUID : players) {
             Player player = Bukkit.getPlayer(UUID.fromString(stringUUID));
             String parent = stringUUID + ".";
-            World world = Bukkit.getWorld(yml.get(parent + "world"));
+
+            UUID worldUUID = UUID.fromString((String) ymlFile.get(parent + "world"));
+            World world = Bukkit.getWorld(worldUUID);
 
             int chestX = (int) ymlFile.get(parent + "chestX");
             int chestY = (int) ymlFile.get(parent + "chestY");
@@ -57,9 +59,6 @@ public class ShopManager {
             int signY = (int) ymlFile.get(parent + "signY");
             int signZ = (int) ymlFile.get(parent + "signZ");
             Sign sign = (Sign) world.getBlockAt(signX, signY, signZ);
-
-
-
         }
     }
 }

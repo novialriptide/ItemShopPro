@@ -2,6 +2,7 @@ name: ItemShopPro
 main: me.novial.itemshoppro.Main
 author: Novial
 version: 1.0
+api-version: 1.17
 commands:
   itemshoppro:
     description: Shows information about the plugin.
