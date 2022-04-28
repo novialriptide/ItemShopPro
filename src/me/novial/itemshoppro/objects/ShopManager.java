@@ -3,12 +3,14 @@ package me.novial.itemshoppro.objects;
 import me.novial.itemshoppro.Main;
 import net.minecraft.core.Vector3f;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -59,6 +61,19 @@ public class ShopManager {
             int signY = (int) ymlFile.get(parent + "signY");
             int signZ = (int) ymlFile.get(parent + "signZ");
             Sign sign = (Sign) world.getBlockAt(signX, signY, signZ);
+
+            int currencyQuantity = (int) ymlFile.get(parent + "currencyQuantity");
+            String currencyName = (String) ymlFile.get(parent + "currency");
+            Material currencyMaterial = Material.getMaterial(currencyName, false);
+            ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
+
+            int productQuantity = (int) ymlFile.get(parent + "productQuantity");
+            String productName = (String) ymlFile.get(parent + "product");
+            Material productMaterial = Material.getMaterial(productName, false);
+            ItemStack product = new ItemStack(productMaterial, productQuantity);
+
+            Shop shop = new Shop(player, product, currency, chest, sign);
+            Main.shopManager.shops.add(shop);
         }
     }
 }

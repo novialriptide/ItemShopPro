@@ -95,6 +95,8 @@ public class CreateShopSign implements Listener {
                 String parent = player.getUniqueId() + ".";
 
                 /** Add Shop to shops.yml file. **/
+                Main.shopsConfig.set(parent + "world", shop.world.getName());
+
                 Main.shopsConfig.set(parent + "chestX", shop.chest.getX());
                 Main.shopsConfig.set(parent + "chestY", shop.chest.getY());
                 Main.shopsConfig.set(parent + "chestZ", shop.chest.getZ());
@@ -108,8 +110,6 @@ public class CreateShopSign implements Listener {
 
                 Main.shopsConfig.set(parent + "product", shop.product.getType().name());
                 Main.shopsConfig.set(parent + "productQuantity", shop.getProductQuantity());
-
-                Main.shopsConfig.set(parent + "world", shop.world.getName());
 
                 Main.shopsConfig.save(Main.shopsFile);
 

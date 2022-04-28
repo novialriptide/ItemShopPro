@@ -25,6 +25,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         this.getServer().getConsoleSender().sendMessage("Creating/loading files...");
         createFiles();
+        shopManager.loadShopsFromYml();
 
         ConsoleCommandSender commandSender = getServer().getConsoleSender();
         PluginManager pluginManager = getServer().getPluginManager();
