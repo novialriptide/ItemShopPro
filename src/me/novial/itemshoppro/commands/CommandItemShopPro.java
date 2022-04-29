@@ -10,7 +10,7 @@ public class CommandItemShopPro implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("itemshoppro")) {
             if (args.length == 0) {
-                SubCommandNoArgs.subCommandNoArgs(sender, command);
+                SubCommandNoArgs.run(sender, command);
             }
         }
 
