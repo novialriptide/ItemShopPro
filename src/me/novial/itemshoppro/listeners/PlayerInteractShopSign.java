@@ -1,8 +1,6 @@
 package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
-import me.novial.itemshoppro.objects.BuyShop;
-import me.novial.itemshoppro.objects.SellShop;
 import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -12,15 +10,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class PlayerInteractShopSign implements Listener {
 
     @EventHandler
     public void onSignRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
+
+        /** Check if the block actually exists. **/
+        if (block == null) {
+            return;
+        }
+
         BlockState blockState = block.getState();
         Player player = event.getPlayer();
         Sign sign;
@@ -39,37 +39,28 @@ public class PlayerInteractShopSign implements Listener {
             return;
         }
 
+        /** Check if the player is blocked. **/
         if (shop.blockedPlayers.contains(player)) {
             String ownerName = shop.owner.getDisplayName();
             player.sendMessage("You are blocked from any activity with all shops owned by {}.".format(ownerName));
             return;
         }
 
+        /**
+         * Check if the store is out of stock,
+         * if player doesn't have enough funds,
+         * or there's nothing wrong.
+         **/
         boolean success = false;
         String shopType = null;
-        if (shop instanceof BuyShop) {
-            BuyShop buyShop = (BuyShop) shop;
+        shopType = "purchased";
 
-            if (!buyShop.inStock()) {
-                player.sendMessage("Out of stock.");
-                return;
-            }
-
-            success = buyShop.purchaseItem(player);
-            shopType = "purchased";
+        if (!shop.inStock()) {
+            player.sendMessage("Out of stock.");
+            return;
         }
 
-        else if (shop instanceof SellShop) {
-            SellShop sellShop = (SellShop) shop;
-
-            if (!sellShop.inStock()) {
-                player.sendMessage("Out of stock.");
-                return;
-            }
-
-            success = sellShop.sellItem(player);
-            shopType = "sold";
-        }
+        success = shop.purchaseItem(player);
 
         if (success) {
             player.sendMessage(String.format(

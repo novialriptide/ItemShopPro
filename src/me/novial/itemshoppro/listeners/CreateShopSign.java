@@ -2,8 +2,6 @@ package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
 import me.novial.itemshoppro.Queue;
-import me.novial.itemshoppro.objects.BuyShop;
-import me.novial.itemshoppro.objects.SellShop;
 import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -91,18 +89,8 @@ public class CreateShopSign implements Listener {
 
                 Shop shop = null;
                 String shopType;
-                if (line1Prefix.equals("B: ")) {
-                    shop = new BuyShop(player, product, currency, queue.chest, sign);
-                    shopType = "buy";
-                }
-                else if (line1Prefix.equals("S: ")) {
-                    shop = new SellShop(player, product, currency, queue.chest, sign);
-                    shopType = "sell";
-                }
-                else {
-                    player.sendMessage("Incorrect shop type.");
-                    return;
-                }
+                shop = new Shop(player, product, currency, queue.chest, sign);
+                shopType = "buy";
 
                 Main.shopManager.shops.add(shop);
 

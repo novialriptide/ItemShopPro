@@ -79,18 +79,8 @@ public class ShopManager {
             ItemStack product = new ItemStack(productMaterial, productQuantity);
 
             String shopType = (String) ymlFile.get(parent + "shopType");
-            if (shopType.equals("buy")) {
-                BuyShop shop = new BuyShop(player, product, currency, chest, sign);
-                Main.shopManager.shops.add(shop);
-            }
-            else if (shopType.equals("sell")) {
-                SellShop shop = new SellShop(player, product, currency, chest, sign);
-                Main.shopManager.shops.add(shop);
-            }
-            else {
-                Bukkit.getConsoleSender().sendMessage("Something went wrong loading this shop.");
-            }
-
+            Shop shop = new Shop(player, product, currency, chest, sign);
+            Main.shopManager.shops.add(shop);
         }
     }
 }
