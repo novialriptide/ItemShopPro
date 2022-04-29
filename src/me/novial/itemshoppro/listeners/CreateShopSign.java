@@ -49,7 +49,7 @@ public class CreateShopSign implements Listener {
          * Line 3 should contain nothing
          *
          * Here's an Example
-         *  - [ItemShopProB]
+         *  - [ItemShopPro]
          *  - B: 64 OAK_LOG
          *  - C: 1 DIAMOND
          */
