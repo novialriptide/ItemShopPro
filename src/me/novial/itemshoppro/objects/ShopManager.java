@@ -4,7 +4,6 @@ import me.novial.itemshoppro.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.ConfigurationSection;
@@ -52,7 +51,7 @@ public class ShopManager {
         for (String shopUUID : shops) {
             String parent = "shops." + shopUUID + ".";
 
-            String playerUUID = (String) ymlFile.get(parent + "player");
+            String playerUUID = (String) ymlFile.get(parent + "owner");
             Player player = Bukkit.getPlayer(UUID.fromString(playerUUID));
 
             UUID worldUUID = UUID.fromString((String) ymlFile.get(parent + "world"));

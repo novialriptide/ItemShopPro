@@ -114,7 +114,7 @@ public class CreateShopSign implements Listener {
                 Main.shopsConfig.set(parent + "productQuantity", shop.getProductQuantity());
 
                 Main.shopsConfig.set(parent + "shopType", shopType);
-                Main.shopsConfig.set(parent + "player", player.getUniqueId().toString());
+                Main.shopsConfig.set(parent + "owner", player.getUniqueId().toString());
 
                 Main.shopsConfig.save(Main.shopsFile);
 
