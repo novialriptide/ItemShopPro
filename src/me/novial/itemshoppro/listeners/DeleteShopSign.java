@@ -18,6 +18,10 @@ public class DeleteShopSign implements Listener {
     public void onBlockDestroy(BlockBreakEvent event) throws IOException {
         Player player = event.getPlayer();
         Block block = event.getBlock();
+        if (block == null) {
+            return;
+        }
+
         BlockState blockState = block.getState();
         Shop shop;
 
@@ -31,9 +35,13 @@ public class DeleteShopSign implements Listener {
             return;
         }
 
-        Main.shopManager.shops.remove(shop);
-        Main.shopsConfig.set("{0}".format(shop.uuid.toString()), null);
+        if (shop == null) {
+            return;
+        }
+
+        Main.shopsConfig.set("{0}".format("shops." + shop.uuid.toString()), null);
         Main.shopsConfig.save(Main.shopsFile);
+        Main.shopManager.shops.remove(shop);
 
         player.sendMessage(Main.messager.getMessage("shop-deleted"));
     }

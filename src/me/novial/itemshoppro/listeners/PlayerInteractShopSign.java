@@ -8,6 +8,7 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerInteractShopSign implements Listener {
@@ -15,6 +16,10 @@ public class PlayerInteractShopSign implements Listener {
     @EventHandler
     public void onSignRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
+        Action action = event.getAction();
+        if (!action.equals(Action.RIGHT_CLICK_BLOCK)) {
+            return;
+        }
 
         /** Check if the block actually exists. **/
         if (block == null) {
@@ -56,17 +61,17 @@ public class PlayerInteractShopSign implements Listener {
         shopType = "purchased";
 
         if (!shop.inStock()) {
-            player.sendMessage(Main.messager.getMessage("out-of-stock"));
+            player.sendMessage(Main.messager.getMessage("out-of-stock", shop));
             return;
         }
 
         success = shop.purchaseItem(player);
 
         if (success) {
-            player.sendMessage(Main.messager.getMessage("transaction-complete"));
+            player.sendMessage(Main.messager.getMessage("transaction-complete", shop));
         }
         else {
-            player.sendMessage(Main.messager.getMessage("not-enough"));
+            player.sendMessage(Main.messager.getMessage("not-enough", shop));
         }
     }
 }
