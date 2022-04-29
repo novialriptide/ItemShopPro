@@ -93,7 +93,7 @@ public class CreateShopSign implements Listener {
 
                 Main.shopManager.shops.add(shop);
 
-                String parent = "shops." + UUID.randomUUID().toString() + ".";
+                String parent = "shops." + shop.uuid.toString() + ".";
 
                 /** Add Shop to shops.yml file. **/
                 Main.shopsConfig.set(parent + "world", shop.world.getUID().toString());

@@ -32,7 +32,7 @@ public class DeleteShopSign implements Listener {
         }
 
         Main.shopManager.shops.remove(shop);
-        Main.shopsConfig.set("{0}".format(player.getUniqueId().toString()), null);
+        Main.shopsConfig.set("{0}".format(shop.uuid.toString()), null);
         Main.shopsConfig.save(Main.shopsFile);
 
         player.sendMessage(Main.messager.getMessage("shop-deleted"));

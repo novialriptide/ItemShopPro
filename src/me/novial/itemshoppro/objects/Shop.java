@@ -8,8 +8,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Shop {
+    public UUID uuid;
     public Player owner;
     public ArrayList<Player> blockedPlayers;
     public ArrayList<Player> playersWithPermission;
@@ -35,6 +37,7 @@ public class Shop {
         this.world = chest.getWorld();
         this.blockedPlayers = new ArrayList<>();
         this.playersWithPermission = new ArrayList<>();
+        this.uuid = UUID.randomUUID();
     }
 
     /** Getters **/
