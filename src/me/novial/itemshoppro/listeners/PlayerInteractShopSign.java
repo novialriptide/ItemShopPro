@@ -42,7 +42,7 @@ public class PlayerInteractShopSign implements Listener {
         /** Check if the player is blocked. **/
         if (shop.blockedPlayers.contains(player)) {
             String ownerName = shop.owner.getDisplayName();
-            player.sendMessage("You are blocked from any activity with all shops owned by {}.".format(ownerName));
+            player.sendMessage(Main.messager.getMessage("shop-blocked"));
             return;
         }
 
@@ -56,24 +56,17 @@ public class PlayerInteractShopSign implements Listener {
         shopType = "purchased";
 
         if (!shop.inStock()) {
-            player.sendMessage("Out of stock.");
+            player.sendMessage(Main.messager.getMessage("out-of-stock"));
             return;
         }
 
         success = shop.purchaseItem(player);
 
         if (success) {
-            player.sendMessage(String.format(
-                    "You have %s %d %s for %d %s.",
-                    shopType,
-                    shop.getProductQuantity(),
-                    shop.product.getType().toString(),
-                    shop.getCurrencyQuantity(),
-                    shop.currency.getType().toString()
-            ));
+            player.sendMessage(Main.messager.getMessage("transaction-complete"));
         }
         else {
-            player.sendMessage("Not enough funds.");
+            player.sendMessage(Main.messager.getMessage("not-enough"));
         }
     }
 }

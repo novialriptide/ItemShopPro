@@ -1,0 +1,26 @@
+# Prefix for every message
+prefix: "&8[&eItemShopPro&8]"
+
+## Messages
+invalid-product-quantity: "&cInvalid product quantity."
+invalid-currency-quantity: "&cInvalid currency quantity."
+invalid-product: "&cInvalid product item."
+invalid-currency: "&cInvalid currency item."
+shop-deleted: "&CDeleted shop."
+config-reload-process: "&eReloading config..."
+config-reload-complete: "&aReload complete!"
+
+# {PRODUCT_QUANTITY}, {PRODUCT_NAME}, {CURRENCY_QUANTITY}, {CURRENCY_NAME}, {OWNER_NAME}
+shop-created: "&aCreated shop."
+
+# {PRODUCT_QUANTITY}, {PRODUCT_NAME}, {CURRENCY_QUANTITY}, {CURRENCY_NAME}, {OWNER_NAME}
+transaction-complete: "&aYou have purchased {PRODUCT_QUANTITY} {PRODUCT_NAME} for {CURRENCY_QUANTITY} {CURRENCY_NAME}."
+
+# {PRODUCT_QUANTITY}, {PRODUCT_NAME}, {CURRENCY_QUANTITY}, {CURRENCY_NAME}, {OWNER_NAME}
+out-of-stock: "&cThis shop is out of stock."
+
+# {PRODUCT_QUANTITY}, {PRODUCT_NAME}, {CURRENCY_QUANTITY}, {CURRENCY_NAME}, {OWNER_NAME}
+shop-blocked: "&cYou are blocked from using {OWNER_NAME}'s shops."
+
+# {PRODUCT_QUANTITY}, {PRODUCT_NAME}, {CURRENCY_QUANTITY}, {CURRENCY_NAME}, {OWNER_NAME}
+not-enough: "&cYou don't have enough {CURRENCY_NAME}(s)."

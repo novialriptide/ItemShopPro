@@ -69,7 +69,7 @@ public class CreateShopSign implements Listener {
                 }
                 catch (NumberFormatException exception) {
                     player.sendMessage(line1[0]);
-                    player.sendMessage("Invalid product quantity.");
+                    player.sendMessage(Main.messager.getMessage("invalid-product-quantity"));
                     return;
                 }
                 Material productMaterial = Material.getMaterial(line1[1], false);
@@ -80,16 +80,15 @@ public class CreateShopSign implements Listener {
                     currencyQuantity = Integer.parseInt(line2[0]);
                 }
                 catch (NumberFormatException exception) {
-                    player.sendMessage("Invalid currency quantity.");
+                    player.sendMessage(Main.messager.getMessage("invalid-currency-quantity"));
                     return;
                 }
 
                 Material currencyMaterial = Material.getMaterial(line2[1], false);
                 ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
-                Shop shop = null;
+                Shop shop = new Shop(player, product, currency, queue.chest, sign);
                 String shopType;
-                shop = new Shop(player, product, currency, queue.chest, sign);
                 shopType = "buy";
 
                 Main.shopManager.shops.add(shop);
@@ -118,7 +117,7 @@ public class CreateShopSign implements Listener {
 
                 Main.shopsConfig.save(Main.shopsFile);
 
-                player.sendMessage("Created shop.");
+                player.sendMessage(Main.messager.getMessage("shop-created", shop));
             }
         }
         shopCreationQueue.remove(player);

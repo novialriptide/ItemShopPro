@@ -19,6 +19,7 @@ import java.io.IOException;
 
 public class Main extends JavaPlugin {
     public static ShopManager shopManager = new ShopManager();
+    public static ConfigMessager messager;
 
     public static File shopsFile;
     public static FileConfiguration shopsConfig;
@@ -36,17 +37,23 @@ public class Main extends JavaPlugin {
 
         commandSender.sendMessage("Loading commands...");
         getCommand("itemshoppro").setExecutor((new CommandItemShopPro()));
+        commandSender.sendMessage("Loaded commands");
 
         commandSender.sendMessage("Loading event listeners...");
         pluginManager.registerEvents(new CreateShopSign(), this);
         pluginManager.registerEvents(new PlayerInteractShopSign(), this);
         pluginManager.registerEvents(new DeleteShopSign(), this);
         pluginManager.registerEvents(new LockChest(), this);
+        commandSender.sendMessage("Loaded event listeners");
 
-        this.getServer().getConsoleSender().sendMessage("Creating/loading files...");
+        commandSender.sendMessage("Creating/loading files...");
         reloadFiles();
         shopManager.loadShopsFromYml((YamlConfiguration) shopsConfig);
         commandSender.sendMessage(String.valueOf(shopManager.shops.size()) + " shops loaded!");
+
+        commandSender.sendMessage("Loading custom messages...");
+        messager = new ConfigMessager(langConfig);
+        commandSender.sendMessage("Loaded custom messages");
     }
 
     private void reloadFiles() {
@@ -58,7 +65,7 @@ public class Main extends JavaPlugin {
         shopsFile = (File) shopsData[0];
         shopsConfig = (FileConfiguration) shopsData[1];
 
-        Object[] langData = reloadFile("langs/{0}.yml".format((String) configConfig.get("lang")));
+        Object[] langData = reloadFile("messages.yml");
         langFile = (File) langData[0];
         langConfig = (FileConfiguration) langData[1];
     }
