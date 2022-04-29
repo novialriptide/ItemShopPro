@@ -3,6 +3,7 @@ package me.novial.itemshoppro;
 import javafx.util.Pair;
 import me.novial.itemshoppro.commands.CommandItemShopPro;
 import me.novial.itemshoppro.listeners.CreateShopSign;
+import me.novial.itemshoppro.listeners.DeleteShopSign;
 import me.novial.itemshoppro.listeners.LockChest;
 import me.novial.itemshoppro.listeners.PlayerInteractShopSign;
 import me.novial.itemshoppro.objects.ShopManager;
@@ -39,6 +40,7 @@ public class Main extends JavaPlugin {
         commandSender.sendMessage("Loading event listeners...");
         pluginManager.registerEvents(new CreateShopSign(), this);
         pluginManager.registerEvents(new PlayerInteractShopSign(), this);
+        pluginManager.registerEvents(new DeleteShopSign(), this);
         pluginManager.registerEvents(new LockChest(), this);
 
         this.getServer().getConsoleSender().sendMessage("Creating/loading files...");
