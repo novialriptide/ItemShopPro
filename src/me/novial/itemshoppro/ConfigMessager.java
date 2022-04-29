@@ -23,11 +23,15 @@ public class ConfigMessager {
         String message = (String) this.config.get(messageID);
 
         HashMap<String, String> variables = new HashMap<>();
-        variables.put("{PRODUCT_QUANTITY}", Integer.toString(shop.getProductQuantity()));
-        variables.put("{PRODUCT_NAME}", shop.product.getType().name());
-        variables.put("{CURRENCY_QUANTITY}", Integer.toString(shop.getCurrencyQuantity()));
-        variables.put("{CURRENCY_NAME}", shop.currency.getType().name());
-        variables.put("{OWNER_NAME}", shop.owner.getDisplayName());
+        variables.put("%PRODUCT_QUANTITY%", Integer.toString(shop.getProductQuantity()));
+        variables.put("%PRODUCT_NAME%", shop.product.getType().name());
+        variables.put("%CURRENCY_QUANTITY%", Integer.toString(shop.getCurrencyQuantity()));
+        variables.put("%CURRENCY_NAME%", shop.currency.getType().name());
+        variables.put("%OWNER_NAME%", shop.owner.getDisplayName());
+
+        for (String variable : variables.keySet()) {
+            message = message.replaceAll(variable, variables.get(variable));
+        }
 
         return ChatColor.translateAlternateColorCodes('&', message);
     }
