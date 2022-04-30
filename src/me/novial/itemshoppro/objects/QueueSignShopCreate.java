@@ -1,13 +1,13 @@
-package me.novial.itemshoppro;
+package me.novial.itemshoppro.objects;
 
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 
-public class Queue {
+public class QueueSignShopCreate {
     public Sign itemShopSign;
     public Chest chest;
 
-    public Queue(Sign itemShopSign, Chest chest) {
+    public QueueSignShopCreate(Sign itemShopSign, Chest chest) {
         this.itemShopSign = itemShopSign;
         this.chest = chest;
     }

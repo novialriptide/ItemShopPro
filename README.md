@@ -9,6 +9,7 @@
  - Supports 1.13 or newer
  - Customizable messages
  - Supports custom NBT formats for items
+ - Create shops from commands or signs
 
 ## Installation
 Drag and drop into your plugins folder and 

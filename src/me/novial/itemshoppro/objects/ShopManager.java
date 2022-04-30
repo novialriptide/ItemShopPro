@@ -11,6 +11,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ShopManager {
@@ -36,6 +37,38 @@ public class ShopManager {
             }
         }
         return null;
+    }
+
+    public void registerShop(Shop shop) throws IOException {
+        Main.shopManager.shops.add(shop);
+
+        shop.sign.setLine(0, "[ItemShopPro]");
+        shop.sign.setLine(1, "B: " + shop.getProductQuantity() + " " + shop.product.getType().name());
+        shop.sign.setLine(2, "C: " + shop.getCurrencyQuantity() + " " + shop.currency.getType().name());
+        shop.sign.setLine(3, "");
+        shop.sign.update(true);
+
+        String parent = "shops." + shop.uuid.toString() + ".";
+
+        /** Add Shop to shops.yml file. **/
+        Main.shopsConfig.set(parent + "owner", shop.owner.getUniqueId().toString());
+        Main.shopsConfig.set(parent + "world", shop.world.getUID().toString());
+
+        Main.shopsConfig.set(parent + "chestX", shop.chest.getX());
+        Main.shopsConfig.set(parent + "chestY", shop.chest.getY());
+        Main.shopsConfig.set(parent + "chestZ", shop.chest.getZ());
+
+        Main.shopsConfig.set(parent + "signX", shop.sign.getX());
+        Main.shopsConfig.set(parent + "signY", shop.sign.getY());
+        Main.shopsConfig.set(parent + "signZ", shop.sign.getZ());
+
+        Main.shopsConfig.set(parent + "currency", shop.currency.getType().name());
+        Main.shopsConfig.set(parent + "currencyQuantity", shop.getCurrencyQuantity());
+
+        Main.shopsConfig.set(parent + "product", shop.product.getType().name());
+        Main.shopsConfig.set(parent + "productQuantity", shop.getProductQuantity());
+
+        Main.shopsConfig.save(Main.shopsFile);
     }
 
     public void loadShopsFromYml(YamlConfiguration ymlFile) {

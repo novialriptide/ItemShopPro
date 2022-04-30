@@ -2,6 +2,8 @@
 prefix: "&8[&eItemShopPro&8]"
 
 ## Messages
+must-be-player: "&cYou must be a player to perform this command."
+not-enough-arguments: "&cNot enough arguments!"
 invalid-product-quantity: "&cInvalid product quantity."
 invalid-currency-quantity: "&cInvalid currency quantity."
 invalid-product: "&cInvalid product item."
@@ -9,6 +11,8 @@ invalid-currency: "&cInvalid currency item."
 shop-deleted: "&CDeleted shop."
 config-reload-process: "&eReloading config..."
 config-reload-complete: "&aReload complete!"
+cmd-create-sign: "&eRight-click a sign to create a shop."
+exit-cmd-shop-create: "&cExiting shop creation."
 
 # %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 shop-created: "&aCreated shop."

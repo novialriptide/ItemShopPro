@@ -8,3 +8,7 @@ commands:
     description: Shows information about the plugin.
     usage: /<command>
     permission: itemshoppro.info
+  createshop:
+    description: Creates a shop.
+    usage: /<command> productQuantity product currencyQuantity currency
+    permission: itemshoppro.createshop

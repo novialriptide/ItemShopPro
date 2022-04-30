@@ -1,7 +1,7 @@
 package me.novial.itemshoppro.listeners;
 
 import me.novial.itemshoppro.Main;
-import me.novial.itemshoppro.Queue;
+import me.novial.itemshoppro.objects.QueueSignShopCreate;
 import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -17,10 +17,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.UUID;
 
 public class CreateShopSign implements Listener {
-    public HashMap<Player, Queue> shopCreationQueue = new HashMap<>();
+    public HashMap<Player, QueueSignShopCreate> shopCreationQueue = new HashMap<>();
 
     /** Create ItemShopPro Chest Shop Event. (Part 1) **/
     @EventHandler
@@ -33,7 +32,7 @@ public class CreateShopSign implements Listener {
         BlockState placedAgainstState = placedAgainst.getState();
 
         if (placedBlockState instanceof Sign && placedAgainstState instanceof Chest) {
-            shopCreationQueue.put(player, new Queue((Sign) placedBlockState, (Chest) placedAgainstState));
+            shopCreationQueue.put(player, new QueueSignShopCreate((Sign) placedBlockState, (Chest) placedAgainstState));
         }
     }
 
@@ -54,7 +53,7 @@ public class CreateShopSign implements Listener {
          *  - C: 1 DIAMOND
          */
         if (shopCreationQueue.keySet().contains(player)) {
-            Queue queue = shopCreationQueue.get(player);
+            QueueSignShopCreate queue = shopCreationQueue.get(player);
             Sign sign = (Sign) event.getBlock().getState();
 
             if (lines[0].equals("[ItemShopPro]") && sign.equals(queue.itemShopSign)) {
@@ -88,30 +87,7 @@ public class CreateShopSign implements Listener {
                 ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
                 Shop shop = new Shop(player, product, currency, queue.chest, sign);
-
-                Main.shopManager.shops.add(shop);
-
-                String parent = "shops." + shop.uuid.toString() + ".";
-
-                /** Add Shop to shops.yml file. **/
-                Main.shopsConfig.set(parent + "owner", player.getUniqueId().toString());
-                Main.shopsConfig.set(parent + "world", shop.world.getUID().toString());
-
-                Main.shopsConfig.set(parent + "chestX", shop.chest.getX());
-                Main.shopsConfig.set(parent + "chestY", shop.chest.getY());
-                Main.shopsConfig.set(parent + "chestZ", shop.chest.getZ());
-
-                Main.shopsConfig.set(parent + "signX", shop.sign.getX());
-                Main.shopsConfig.set(parent + "signY", shop.sign.getY());
-                Main.shopsConfig.set(parent + "signZ", shop.sign.getZ());
-
-                Main.shopsConfig.set(parent + "currency", shop.currency.getType().name());
-                Main.shopsConfig.set(parent + "currencyQuantity", shop.getCurrencyQuantity());
-
-                Main.shopsConfig.set(parent + "product", shop.product.getType().name());
-                Main.shopsConfig.set(parent + "productQuantity", shop.getProductQuantity());
-
-                Main.shopsConfig.save(Main.shopsFile);
+                Main.shopManager.registerShop(shop);
 
                 player.sendMessage(Main.messager.getMessage("shop-created", shop));
             }

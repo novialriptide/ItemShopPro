@@ -1,10 +1,8 @@
 package me.novial.itemshoppro;
 
+import me.novial.itemshoppro.commands.CommandCreateShop;
 import me.novial.itemshoppro.commands.CommandItemShopPro;
-import me.novial.itemshoppro.listeners.CreateShopSign;
-import me.novial.itemshoppro.listeners.DeleteShopSign;
-import me.novial.itemshoppro.listeners.LockChest;
-import me.novial.itemshoppro.listeners.PlayerInteractShopSign;
+import me.novial.itemshoppro.listeners.*;
 import me.novial.itemshoppro.objects.ShopManager;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -36,11 +34,13 @@ public class Main extends JavaPlugin {
 
         commandSender.sendMessage("[ItemShopPro] Loading commands...");
         getCommand("itemshoppro").setExecutor((new CommandItemShopPro()));
+        getCommand("createshop").setExecutor((new CommandCreateShop()));
         commandSender.sendMessage("[ItemShopPro] Loaded commands");
 
         commandSender.sendMessage("[ItemShopPro] Loading event listeners...");
         pluginManager.registerEvents(new CreateShopSign(), this);
         pluginManager.registerEvents(new PlayerInteractShopSign(), this);
+        pluginManager.registerEvents(new CmdCreateShopSign(), this);
         pluginManager.registerEvents(new DeleteShopSign(), this);
         pluginManager.registerEvents(new LockChest(), this);
         commandSender.sendMessage("[ItemShopPro] Loaded event listeners");
