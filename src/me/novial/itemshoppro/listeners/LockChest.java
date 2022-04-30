@@ -9,10 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LockChest implements Listener {
-
     @EventHandler
     public void onChestRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
@@ -44,8 +44,8 @@ public class LockChest implements Listener {
             return;
         }
 
-        if (player != shop.owner) {
-            player.sendMessage(Main.messager.getMessage("shop-access-denied", shop));
+        if (!(player.getUniqueId().equals(shop.owner.getUniqueId()))) {
+            player.sendMessage(Main.messager.getMessage("shop-access-denied-open", shop));
             event.setCancelled(true);
             return;
         }

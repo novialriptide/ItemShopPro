@@ -28,7 +28,10 @@ out-of-stock: "&cThis shop is out of stock."
 shop-blocked: "&cYou are blocked from using %OWNER_NAME%'s shops."
 
 # %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
-shop-access-denied: "&cYou do not have permission to open shops by %OWNER_NAME%"
+shop-access-denied-open: "&cYou do not have permission to open shops by %OWNER_NAME%"
+
+# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
+shop-access-denied-destroy: "&cYou do not have permission to destroy shops by %OWNER_NAME%"
 
 # %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 not-enough: "&cYou don't have enough %CURRENCY_NAME%(s)."

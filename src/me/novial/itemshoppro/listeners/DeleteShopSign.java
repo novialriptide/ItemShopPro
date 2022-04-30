@@ -39,6 +39,12 @@ public class DeleteShopSign implements Listener {
             return;
         }
 
+        if (!(player.getUniqueId().equals(shop.owner.getUniqueId()))) {
+            player.sendMessage(Main.messager.getMessage("shop-access-denied-destroy", shop));
+            event.setCancelled(true);
+            return;
+        }
+
         Main.shopsConfig.set("{0}".format("shops." + shop.uuid.toString()), null);
         Main.shopsConfig.save(Main.shopsFile);
         Main.shopManager.shops.remove(shop);
