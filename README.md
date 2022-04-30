@@ -19,8 +19,9 @@ restart or reload the server.
 ## Build & Run From Source
 1. Download [BuildTools.jar](https://hub.spigotmc.org/jenkins/job/BuildTools/)
 2. Install JDK8
-3. Run `java -jar BuildTools.jar --rev 1.13`
-4. Compile the repository as a jar file with 
+4. Run `java -jar BuildTools.jar --rev 1.13`
+5. Register `spigot-1.13.jar` as a dependency 
+5. Compile the repository as a jar file with 
 `me.novial.itemshoppro.Main` being the main class.
-5. Drag and drop the compiled jar file to your
+6. Drag and drop the compiled jar file to your
 plugins folder.
