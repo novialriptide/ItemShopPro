@@ -10,13 +10,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.command.TabCompleter;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 public class CmdCreateShopSign implements Listener {
     public static HashMap<Player, QueueCmdShopCreate> shopCreationQueue = new HashMap<>();
+
+    private void removePlayerFromQueue(Player player) {
+        shopCreationQueue.remove(player);
+        player.sendMessage(Main.messager.getMessage("exit-cmd-shop-create"));
+    }
 
     @EventHandler
     public void onSignRightClick(PlayerInteractEvent event) throws IOException {
@@ -28,8 +32,7 @@ public class CmdCreateShopSign implements Listener {
 
         Block block = event.getClickedBlock();
         if (block == null) {
-            shopCreationQueue.remove(player);
-            player.sendMessage(Main.messager.getMessage("exit-cmd-shop-create"));
+            removePlayerFromQueue(player);
             return;
         }
 
@@ -37,11 +40,17 @@ public class CmdCreateShopSign implements Listener {
         QueueCmdShopCreate queue = shopCreationQueue.get(player);
 
         if (!(blockState instanceof Sign)) {
-            shopCreationQueue.remove(player);
-            player.sendMessage(Main.messager.getMessage("exit-cmd-shop-create"));
+            removePlayerFromQueue(player);
             return;
         }
         Sign sign = (Sign) event.getClickedBlock().getState();
+
+        /** Check if sign exists on that location. **/
+        if (Main.shopManager.findShopFromSign(sign) != null) {
+            player.sendMessage(Main.messager.getMessage("shop-already-exists"));
+            removePlayerFromQueue(player);
+            return;
+        }
 
         BlockFace blockFace = ((Directional) block.getBlockData()).getFacing();
         Block blockBehindSign = null;
@@ -63,8 +72,7 @@ public class CmdCreateShopSign implements Listener {
         }
 
         if (!(blockBehindSign.getState() instanceof Chest)) {
-            shopCreationQueue.remove(player);
-            player.sendMessage(Main.messager.getMessage("exit-cmd-shop-create"));
+            removePlayerFromQueue(player);
             return;
         }
 
@@ -73,7 +81,6 @@ public class CmdCreateShopSign implements Listener {
         Main.shopManager.registerShop(shop);
 
         player.sendMessage(Main.messager.getMessage("shop-created", shop));
-        shopCreationQueue.remove(player);
-        player.sendMessage(Main.messager.getMessage("exit-cmd-shop-create"));
+        removePlayerFromQueue(player);
     }
 }

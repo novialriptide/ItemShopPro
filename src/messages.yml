@@ -13,6 +13,7 @@ config-reload-process: "&eReloading config..."
 config-reload-complete: "&aReload complete!"
 cmd-create-sign: "&eRight-click a sign to create a shop."
 exit-cmd-shop-create: "&cExiting shop creation."
+shop-already-exists: "&cYou are conflicting over an existing shop."
 
 # %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 shop-created: "&aCreated shop."
