@@ -15,8 +15,9 @@ public class ConfigMessager {
     }
 
     public String getMessage(String messageID) {
+        String prefix = (String) this.config.get("prefix");
         String message = (String) this.config.get(messageID);
-        return ChatColor.translateAlternateColorCodes('&', message);
+        return ChatColor.translateAlternateColorCodes('&', prefix + " " + message);
     }
 
     public String getMessage(String messageID, Shop shop) {
