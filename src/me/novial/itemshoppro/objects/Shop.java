@@ -54,12 +54,20 @@ public class Shop {
         Inventory chestInventory = this.chest.getInventory();
         Inventory playerInventory = player.getInventory();
 
-        if (chestInventory.containsAtLeast(product, 1) && playerInventory.containsAtLeast(currency, 1)) {
-            chestInventory.removeItem(product);
-            playerInventory.addItem(product);
+        if (chestInventory.contains(product.getType(), getProductQuantity()) && playerInventory.contains(currency.getType(), getCurrencyQuantity())) {
+            int productIndex = chestInventory.first(product.getType());
+            ItemStack addProduct = new ItemStack(chestInventory.getItem(productIndex));
+            addProduct.setAmount(getProductQuantity());
 
-            playerInventory.removeItem(currency);
-            chestInventory.addItem(currency);
+            int currencyIndex = playerInventory.first(currency.getType());
+            ItemStack addCurrency = new ItemStack(playerInventory.getItem(currencyIndex));
+            addCurrency.setAmount(getCurrencyQuantity());
+
+            chestInventory.removeItem(addProduct);
+            playerInventory.addItem(addProduct);
+
+            playerInventory.removeItem(addCurrency);
+            chestInventory.addItem(addCurrency);
             return true;
         }
 
@@ -69,6 +77,6 @@ public class Shop {
     /** Returns a boolean whether the shop is in stock or not. **/
     public boolean inStock() {
         Inventory inventory = this.chest.getBlockInventory();
-        return inventory.containsAtLeast(this.product, 1);
+        return inventory.contains(this.product.getType(), getProductQuantity());
     }
 }

@@ -8,6 +8,7 @@
 ## Features
  - Supports 1.13 or newer
  - Customizable messages
+ - Supports custom NBT formats for items
 
 ## Installation
 Drag and drop into your plugins folder and 
