@@ -41,17 +41,7 @@ public class CreateShopSign implements Listener {
     public void onSignChange(SignChangeEvent event) throws IOException {
         Player player = event.getPlayer();
         String[] lines = event.getLines();
-        /* How the program reads this.
-         * Line 0 contains prefix
-         * Line 1 contains currency quantity and item
-         * Line 2 contains product quantity and item
-         * Line 3 should contain nothing
-         *
-         * Here's an Example
-         *  - [ItemShopPro]
-         *  - B: 64 OAK_LOG
-         *  - C: 1 DIAMOND
-         */
+
         if (shopCreationQueue.keySet().contains(player)) {
             QueueSignShopCreate queue = shopCreationQueue.get(player);
             Sign sign = (Sign) event.getBlock().getState();
