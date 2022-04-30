@@ -77,7 +77,6 @@ public class ShopManager {
             Material productMaterial = Material.getMaterial(productName, false);
             ItemStack product = new ItemStack(productMaterial, productQuantity);
 
-            String shopType = (String) ymlFile.get(parent + "shopType");
             Shop shop = new Shop(player, product, currency, chest, sign);
             Main.shopManager.shops.add(shop);
         }

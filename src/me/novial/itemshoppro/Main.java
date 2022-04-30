@@ -1,6 +1,5 @@
 package me.novial.itemshoppro;
 
-import javafx.util.Pair;
 import me.novial.itemshoppro.commands.CommandItemShopPro;
 import me.novial.itemshoppro.listeners.CreateShopSign;
 import me.novial.itemshoppro.listeners.DeleteShopSign;

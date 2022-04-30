@@ -88,14 +88,13 @@ public class CreateShopSign implements Listener {
                 ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
                 Shop shop = new Shop(player, product, currency, queue.chest, sign);
-                String shopType;
-                shopType = "buy";
 
                 Main.shopManager.shops.add(shop);
 
                 String parent = "shops." + shop.uuid.toString() + ".";
 
                 /** Add Shop to shops.yml file. **/
+                Main.shopsConfig.set(parent + "owner", player.getUniqueId().toString());
                 Main.shopsConfig.set(parent + "world", shop.world.getUID().toString());
 
                 Main.shopsConfig.set(parent + "chestX", shop.chest.getX());
@@ -111,9 +110,6 @@ public class CreateShopSign implements Listener {
 
                 Main.shopsConfig.set(parent + "product", shop.product.getType().name());
                 Main.shopsConfig.set(parent + "productQuantity", shop.getProductQuantity());
-
-                Main.shopsConfig.set(parent + "shopType", shopType);
-                Main.shopsConfig.set(parent + "owner", player.getUniqueId().toString());
 
                 Main.shopsConfig.save(Main.shopsFile);
 

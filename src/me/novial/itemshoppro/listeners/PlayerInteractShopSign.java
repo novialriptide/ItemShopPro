@@ -51,22 +51,12 @@ public class PlayerInteractShopSign implements Listener {
             return;
         }
 
-        /**
-         * Check if the store is out of stock,
-         * if player doesn't have enough funds,
-         * or there's nothing wrong.
-         **/
-        boolean success = false;
-        String shopType = null;
-        shopType = "purchased";
-
         if (!shop.inStock()) {
             player.sendMessage(Main.messager.getMessage("out-of-stock", shop));
             return;
         }
 
-        success = shop.purchaseItem(player);
-
+        boolean success = shop.purchaseItem(player);
         if (success) {
             player.sendMessage(Main.messager.getMessage("transaction-complete", shop));
         }
