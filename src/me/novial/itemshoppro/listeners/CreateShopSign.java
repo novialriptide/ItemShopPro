@@ -57,6 +57,10 @@ public class CreateShopSign implements Listener {
             Sign sign = (Sign) event.getBlock().getState();
 
             if (lines[0].equals("[ItemShopPro]") && sign.equals(queue.itemShopSign)) {
+                if (lines[1].equals("") || lines[2].equals("")) {
+                    return;
+                }
+
                 String line1Prefix = lines[1].substring(0, 3);
                 String line2Prefix = lines[2].substring(0, 3);
                 String[] line1 = lines[1].substring(3).split(" ");
@@ -72,6 +76,10 @@ public class CreateShopSign implements Listener {
                     return;
                 }
                 Material productMaterial = Material.getMaterial(line1[1], false);
+                if (productMaterial == null) {
+                    player.sendMessage(Main.messager.getMessage("invalid-product"));
+                    return;
+                }
                 ItemStack product = new ItemStack(productMaterial, productQuantity);
 
                 int currencyQuantity;
@@ -84,6 +92,10 @@ public class CreateShopSign implements Listener {
                 }
 
                 Material currencyMaterial = Material.getMaterial(line2[1], false);
+                if (currencyMaterial == null) {
+                    player.sendMessage(Main.messager.getMessage("invalid-currency"));
+                    return;
+                }
                 ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
                 Shop shop = new Shop(player, product, currency, queue.chest, sign);

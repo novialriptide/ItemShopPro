@@ -43,8 +43,8 @@ public class ShopManager {
         Main.shopManager.shops.add(shop);
 
         shop.sign.setLine(0, "[ItemShopPro]");
-        shop.sign.setLine(1, "B: " + shop.getProductQuantity() + " " + shop.product.getType().name());
-        shop.sign.setLine(2, "C: " + shop.getCurrencyQuantity() + " " + shop.currency.getType().name());
+        shop.sign.setLine(1, ("B: " + shop.getProductQuantity() + " " + shop.product.getType().name()).substring(0, 16));
+        shop.sign.setLine(2, ("C: " + shop.getCurrencyQuantity() + " " + shop.currency.getType().name()).substring(0, 16));
         shop.sign.setLine(3, "");
         shop.sign.update(true);
 
