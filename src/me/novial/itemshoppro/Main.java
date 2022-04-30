@@ -4,6 +4,7 @@ import me.novial.itemshoppro.commands.CommandCreateShop;
 import me.novial.itemshoppro.commands.CommandItemShopPro;
 import me.novial.itemshoppro.listeners.*;
 import me.novial.itemshoppro.objects.ShopManager;
+import org.bukkit.Material;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
     public static ShopManager shopManager = new ShopManager();
@@ -27,10 +29,19 @@ public class Main extends JavaPlugin {
     public static File langFile;
     public static FileConfiguration langConfig;
 
+    public static ArrayList<String> materials;
+
     @Override
     public void onEnable() {
         ConsoleCommandSender commandSender = getServer().getConsoleSender();
         PluginManager pluginManager = getServer().getPluginManager();
+
+        commandSender.sendMessage("[ItemShopPro] Caching materials list...");
+        materials = new ArrayList<>();
+        for(Material material : Material.values()) {
+            materials.add(material.name());
+        }
+        commandSender.sendMessage("[ItemShopPro] Cached materials");
 
         commandSender.sendMessage("[ItemShopPro] Loading commands...");
         getCommand("itemshoppro").setExecutor((new CommandItemShopPro()));

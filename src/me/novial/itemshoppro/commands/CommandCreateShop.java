@@ -5,14 +5,14 @@ import me.novial.itemshoppro.listeners.CmdCreateShopSign;
 import me.novial.itemshoppro.objects.QueueCmdShopCreate;
 import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class CommandCreateShop implements CommandExecutor {
-    @Override
+import java.util.ArrayList;
+import java.util.List;
+
+public class CommandCreateShop implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(Main.messager.getMessage("must-be-player"));
@@ -36,5 +36,22 @@ public class CommandCreateShop implements CommandExecutor {
         }
 
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        List<String> list = new ArrayList<>();
+
+        if (!(sender instanceof Player)) {
+            return null;
+        }
+
+        if (command.getName().equals("createshop")) {
+            if (args.length == 2 || args.length == 4) {
+                list.addAll(Main.materials);
+            }
+        }
+
+        return list;
     }
 }
