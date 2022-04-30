@@ -3,10 +3,12 @@ package me.novial.itemshoppro.listeners;
 import me.novial.itemshoppro.Main;
 import me.novial.itemshoppro.objects.Shop;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LockChest implements Listener {
@@ -15,11 +17,22 @@ public class LockChest implements Listener {
     public void onChestRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
+        Action action = event.getAction();
         Chest chest;
 
+        if (action != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
+
+        if (block == null) {
+            return;
+        }
+
+        BlockState blockState = block.getState();
+
         /** Check if block is a chest. **/
-        if (block instanceof Chest) {
-            chest = (Chest) block;
+        if (blockState instanceof Chest) {
+            chest = (Chest) blockState;
         }
         else {
             return;
@@ -32,12 +45,9 @@ public class LockChest implements Listener {
         }
 
         if (player != shop.owner) {
-            player.sendMessage("This shop is owned by {0}".format(shop.owner.getDisplayName()));
-            player.closeInventory();
+            player.sendMessage(Main.messager.getMessage("shop-access-denied", shop));
+            event.setCancelled(true);
             return;
         }
     }
-
-    @EventHandler
-    public void onChestExplode() {}
 }
