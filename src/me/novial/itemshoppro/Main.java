@@ -52,13 +52,17 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new CreateShopSign(), this);
         pluginManager.registerEvents(new PlayerInteractShopSign(), this);
         pluginManager.registerEvents(new CmdCreateShopSign(), this);
-        pluginManager.registerEvents(new DeleteShopSign(), this);
         pluginManager.registerEvents(new LockChest(), this);
+        pluginManager.registerEvents(new DeleteShopSign(), this);
         commandSender.sendMessage("[ItemShopPro] Loaded event listeners");
 
         commandSender.sendMessage("[ItemShopPro] Creating/loading files...");
         reloadFiles();
-        shopManager.loadShopsFromYml((YamlConfiguration) shopsConfig);
+        try {
+            shopManager.loadShopsFromYml((YamlConfiguration) shopsConfig, shopsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         commandSender.sendMessage("[ItemShopPro] " + String.valueOf(shopManager.shops.size()) + " shops loaded!");
 
         commandSender.sendMessage("[ItemShopPro] Loading custom messages...");

@@ -3,14 +3,15 @@ package me.novial.itemshoppro.objects;
 import me.novial.itemshoppro.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -71,8 +72,8 @@ public class ShopManager {
         Main.shopsConfig.save(Main.shopsFile);
     }
 
-    public void loadShopsFromYml(YamlConfiguration ymlFile) {
-        ConfigurationSection shopSection = ymlFile.getConfigurationSection("shops");
+    public void loadShopsFromYml(YamlConfiguration ymlConfig, File ymlFile) throws IOException {
+        ConfigurationSection shopSection = ymlConfig.getConfigurationSection("shops");
 
         if (shopSection == null) {
             Bukkit.getConsoleSender().sendMessage("Shops is empty.");
@@ -84,34 +85,52 @@ public class ShopManager {
         for (String shopUUID : shops) {
             String parent = "shops." + shopUUID + ".";
 
-            String playerUUID = (String) ymlFile.get(parent + "owner");
-            Player player = Bukkit.getPlayer(UUID.fromString(playerUUID));
+            String playerUUID = (String) ymlConfig.get(parent + "owner");
+            OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(playerUUID));
 
-            UUID worldUUID = UUID.fromString((String) ymlFile.get(parent + "world"));
+            UUID worldUUID = UUID.fromString((String) ymlConfig.get(parent + "world"));
             World world = Bukkit.getWorld(worldUUID);
 
-            int chestX = (int) ymlFile.get(parent + "chestX");
-            int chestY = (int) ymlFile.get(parent + "chestY");
-            int chestZ = (int) ymlFile.get(parent + "chestZ");
-            Chest chest = (Chest) world.getBlockAt(chestX, chestY, chestZ).getState();
+            int chestX = (int) ymlConfig.get(parent + "chestX");
+            int chestY = (int) ymlConfig.get(parent + "chestY");
+            int chestZ = (int) ymlConfig.get(parent + "chestZ");
+            Chest chest;
+            try {
+                chest = (Chest) world.getBlockAt(chestX, chestY, chestZ).getState();
+            }
+            catch (ClassCastException exception) {
+                Bukkit.getConsoleSender().sendMessage("[ItemShopPro] Deleting 1 shop (failed to load chest)");
+                ymlConfig.set("shops." + shopUUID, null);
+                continue;
+            }
 
-            int signX = (int) ymlFile.get(parent + "signX");
-            int signY = (int) ymlFile.get(parent + "signY");
-            int signZ = (int) ymlFile.get(parent + "signZ");
-            Sign sign = (Sign) world.getBlockAt(signX, signY, signZ).getState();
+            int signX = (int) ymlConfig.get(parent + "signX");
+            int signY = (int) ymlConfig.get(parent + "signY");
+            int signZ = (int) ymlConfig.get(parent + "signZ");
+            Sign sign;
+            try {
+                sign = (Sign) world.getBlockAt(signX, signY, signZ).getState();
+            }
+            catch (ClassCastException exception) {
+                Bukkit.getConsoleSender().sendMessage("[ItemShopPro] Deleting 1 shop (failed to load sign)");
+                ymlConfig.set("shops." + shopUUID, null);
+                continue;
+            }
 
-            int currencyQuantity = (int) ymlFile.get(parent + "currencyQuantity");
-            String currencyName = (String) ymlFile.get(parent + "currency");
+            int currencyQuantity = (int) ymlConfig.get(parent + "currencyQuantity");
+            String currencyName = (String) ymlConfig.get(parent + "currency");
             Material currencyMaterial = Material.getMaterial(currencyName, false);
             ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
 
-            int productQuantity = (int) ymlFile.get(parent + "productQuantity");
-            String productName = (String) ymlFile.get(parent + "product");
+            int productQuantity = (int) ymlConfig.get(parent + "productQuantity");
+            String productName = (String) ymlConfig.get(parent + "product");
             Material productMaterial = Material.getMaterial(productName, false);
             ItemStack product = new ItemStack(productMaterial, productQuantity);
 
             Shop shop = new Shop(player, product, currency, chest, sign);
             Main.shopManager.shops.add(shop);
         }
+
+        ymlConfig.save(ymlFile);
     }
 }

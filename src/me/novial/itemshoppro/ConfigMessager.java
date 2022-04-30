@@ -29,7 +29,7 @@ public class ConfigMessager {
         variables.put("%PRODUCT_NAME%", shop.product.getType().name());
         variables.put("%CURRENCY_QUANTITY%", Integer.toString(shop.getCurrencyQuantity()));
         variables.put("%CURRENCY_NAME%", shop.currency.getType().name());
-        variables.put("%OWNER_NAME%", shop.owner.getDisplayName());
+        variables.put("%OWNER_NAME%", shop.owner.getName());
 
         for (String variable : variables.keySet()) {
             message = message.replaceAll(variable, variables.get(variable));

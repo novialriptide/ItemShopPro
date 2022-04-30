@@ -9,10 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerInteractShopSign implements Listener {
-
     @EventHandler
     public void onSignRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
@@ -46,7 +46,7 @@ public class PlayerInteractShopSign implements Listener {
 
         /** Check if the player is blocked. **/
         if (shop.blockedPlayers.contains(player)) {
-            String ownerName = shop.owner.getDisplayName();
+            String ownerName = shop.owner.getName();
             player.sendMessage(Main.messager.getMessage("shop-blocked"));
             return;
         }

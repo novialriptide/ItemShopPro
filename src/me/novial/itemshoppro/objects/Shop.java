@@ -1,5 +1,6 @@
 package me.novial.itemshoppro.objects;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
@@ -12,7 +13,7 @@ import java.util.UUID;
 
 public class Shop {
     public UUID uuid;
-    public Player owner;
+    public OfflinePlayer owner;
     public ArrayList<Player> blockedPlayers;
     public ArrayList<Player> playersWithPermission;
 
@@ -23,7 +24,7 @@ public class Shop {
     public World world;
 
     public Shop(
-            Player owner,
+            OfflinePlayer owner,
             ItemStack product,
             ItemStack currency,
             Chest chest,
