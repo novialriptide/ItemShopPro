@@ -10,6 +10,7 @@
  - Customizable messages
  - Supports custom NBT formats for items
  - Create shops from commands or signs
+ - Comes with player protection
 
 ## Installation
 Drag and drop into your plugins folder and 
