@@ -35,25 +35,25 @@ public class Main extends JavaPlugin {
         ConsoleCommandSender commandSender = getServer().getConsoleSender();
         PluginManager pluginManager = getServer().getPluginManager();
 
-        commandSender.sendMessage("Loading commands...");
+        commandSender.sendMessage("[ItemShopPro] Loading commands...");
         getCommand("itemshoppro").setExecutor((new CommandItemShopPro()));
-        commandSender.sendMessage("Loaded commands");
+        commandSender.sendMessage("[ItemShopPro] Loaded commands");
 
-        commandSender.sendMessage("Loading event listeners...");
+        commandSender.sendMessage("[ItemShopPro] Loading event listeners...");
         pluginManager.registerEvents(new CreateShopSign(), this);
         pluginManager.registerEvents(new PlayerInteractShopSign(), this);
         pluginManager.registerEvents(new DeleteShopSign(), this);
         pluginManager.registerEvents(new LockChest(), this);
-        commandSender.sendMessage("Loaded event listeners");
+        commandSender.sendMessage("[ItemShopPro] Loaded event listeners");
 
-        commandSender.sendMessage("Creating/loading files...");
+        commandSender.sendMessage("[ItemShopPro] Creating/loading files...");
         reloadFiles();
         shopManager.loadShopsFromYml((YamlConfiguration) shopsConfig);
-        commandSender.sendMessage(String.valueOf(shopManager.shops.size()) + " shops loaded!");
+        commandSender.sendMessage("[ItemShopPro] " + String.valueOf(shopManager.shops.size()) + " shops loaded!");
 
-        commandSender.sendMessage("Loading custom messages...");
+        commandSender.sendMessage("[ItemShopPro] Loading custom messages...");
         messager = new ConfigMessager(langConfig);
-        commandSender.sendMessage("Loaded custom messages");
+        commandSender.sendMessage("[ItemShopPro] Loaded custom messages");
     }
 
     private void reloadFiles() {

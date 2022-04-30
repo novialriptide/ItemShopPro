@@ -20,6 +20,7 @@ public class ConfigMessager {
     }
 
     public String getMessage(String messageID, Shop shop) {
+        String prefix = (String) this.config.get("prefix");
         String message = (String) this.config.get(messageID);
 
         HashMap<String, String> variables = new HashMap<>();
@@ -33,6 +34,6 @@ public class ConfigMessager {
             message = message.replaceAll(variable, variables.get(variable));
         }
 
-        return ChatColor.translateAlternateColorCodes('&', message);
+        return ChatColor.translateAlternateColorCodes('&', prefix + " " + message);
     }
 }
