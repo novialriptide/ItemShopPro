@@ -44,8 +44,22 @@ public class ShopManager {
         Main.shopManager.shops.add(shop);
 
         shop.sign.setLine(0, "[ItemShopPro]");
-        shop.sign.setLine(1, ("B: " + shop.getProductQuantity() + " " + shop.product.getType().name()).substring(0, 16));
-        shop.sign.setLine(2, ("C: " + shop.getCurrencyQuantity() + " " + shop.currency.getType().name()).substring(0, 16));
+
+        int charLimit = 12;
+        String newLine1 = "B: " + shop.getProductQuantity() + " " + shop.product.getType().name();
+        if (newLine1.length() > charLimit) {
+            shop.sign.setLine(1, newLine1.substring(0, charLimit));
+        }
+        else {
+            shop.sign.setLine(1, newLine1);
+        }
+        String newLine2 = "C: " + shop.getCurrencyQuantity() + " " + shop.currency.getType().name();
+        if (newLine2.length() > charLimit) {
+            shop.sign.setLine(2, newLine2.substring(0, charLimit));
+        }
+        else {
+            shop.sign.setLine(2, (newLine2));
+        }
         shop.sign.setLine(3, "");
         shop.sign.update(true);
 
