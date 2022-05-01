@@ -35,3 +35,6 @@ shop-access-denied-destroy: "&cYou do not have permission to destroy shops by %O
 
 # %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 not-enough: "&cYou don't have enough %CURRENCY_NAME%(s)."
+
+# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
+shop-data: "&cThis shop is owned by %OWNER_NAME%, selling %PRODUCT_QUANTITY% %PRODUCT_NAME%(s) for %CURRENCY_QUANTITY% %CURRENCY_NAME%(s)."

@@ -17,9 +17,6 @@ public class PlayerInteractShopSign implements Listener {
     public void onSignRightClick(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Action action = event.getAction();
-        if (!action.equals(Action.RIGHT_CLICK_BLOCK)) {
-            return;
-        }
 
         /** Check if the block actually exists. **/
         if (block == null) {
@@ -51,17 +48,23 @@ public class PlayerInteractShopSign implements Listener {
             return;
         }
 
-        if (!shop.inStock()) {
-            player.sendMessage(Main.messager.getMessage("out-of-stock", shop));
-            return;
-        }
 
-        boolean success = shop.purchaseItem(player);
-        if (success) {
-            player.sendMessage(Main.messager.getMessage("transaction-complete", shop));
+        if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (!shop.inStock()) {
+                player.sendMessage(Main.messager.getMessage("out-of-stock", shop));
+                return;
+            }
+
+            boolean success = shop.purchaseItem(player);
+            if (success) {
+                player.sendMessage(Main.messager.getMessage("transaction-complete", shop));
+            }
+            else {
+                player.sendMessage(Main.messager.getMessage("not-enough", shop));
+            }
         }
-        else {
-            player.sendMessage(Main.messager.getMessage("not-enough", shop));
+        else if (action.equals(Action.LEFT_CLICK_BLOCK)) {
+            player.sendMessage(Main.messager.getMessage("shop-data", shop));
         }
     }
 }
