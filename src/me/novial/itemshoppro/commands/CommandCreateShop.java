@@ -4,6 +4,7 @@ import me.novial.itemshoppro.Main;
 import me.novial.itemshoppro.listeners.CmdCreateShopSign;
 import me.novial.itemshoppro.objects.QueueCmdShopCreate;
 import me.novial.itemshoppro.objects.Shop;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -31,7 +32,7 @@ public class CommandCreateShop implements TabExecutor {
             int currencyQuantity = Integer.parseInt(args[2]);
             ItemStack currency = new ItemStack(Material.getMaterial(args[3]), currencyQuantity);
 
-            CmdCreateShopSign.shopCreationQueue.put(player, new QueueCmdShopCreate(player, product, currency));
+            CmdCreateShopSign.shopCreationQueue.put(player, new QueueCmdShopCreate(Bukkit.getOfflinePlayer(player.getUniqueId()), product, currency));
             player.sendMessage(Main.messager.getMessage("cmd-create-sign"));
         }
 
