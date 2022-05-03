@@ -1,8 +1,9 @@
 <div align="center">
-    <h1>ItemShopPro</h1>
+    <img src="https://user-images.githubusercontent.com/35881688/166486422-619d8f85-1d1a-4826-bcc9-1dea95b99fbd.png" alt="ItemShopPro">
     <p>Create shops like in HermitCraft with player protection</p>
-    <img src="https://img.shields.io/github/license/novialriptide/ItemShopPro" alt="License">
-    <img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fnovialprojects.com%2F" alt="Website">
+    <img src="https://img.shields.io/github/license/novialriptide/ItemShopPro?style=for-the-badge" alt="License">
+    <img src="https://img.shields.io/badge/Spigot_API_Version-1.13-orange?style=for-the-badge" alt="Spigot API Version">
+    <img src="https://img.shields.io/badge/JDK-1.8.0-orange?style=for-the-badge" alt="JDK Version">
 </div>
 
 ## Features
