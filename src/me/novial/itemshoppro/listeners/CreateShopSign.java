@@ -61,12 +61,12 @@ public class CreateShopSign implements Listener {
           productQuantity = Integer.parseInt(line1[0]);
         } catch (NumberFormatException exception) {
           player.sendMessage(line1[0]);
-          player.sendMessage(Main.messager.getMessage("invalid-product-quantity"));
+          player.sendMessage(Main.configMessager.getMessage("invalid-product-quantity"));
           return;
         }
         Material productMaterial = Material.getMaterial(line1[1], false);
         if (productMaterial == null) {
-          player.sendMessage(Main.messager.getMessage("invalid-product"));
+          player.sendMessage(Main.configMessager.getMessage("invalid-product"));
           return;
         }
         ItemStack product = new ItemStack(productMaterial, productQuantity);
@@ -75,13 +75,13 @@ public class CreateShopSign implements Listener {
         try {
           currencyQuantity = Integer.parseInt(line2[0]);
         } catch (NumberFormatException exception) {
-          player.sendMessage(Main.messager.getMessage("invalid-currency-quantity"));
+          player.sendMessage(Main.configMessager.getMessage("invalid-currency-quantity"));
           return;
         }
 
         Material currencyMaterial = Material.getMaterial(line2[1], false);
         if (currencyMaterial == null) {
-          player.sendMessage(Main.messager.getMessage("invalid-currency"));
+          player.sendMessage(Main.configMessager.getMessage("invalid-currency"));
           return;
         }
         ItemStack currency = new ItemStack(currencyMaterial, currencyQuantity);
@@ -89,7 +89,7 @@ public class CreateShopSign implements Listener {
         Shop shop = new Shop(player, product, currency, queue.chest, sign);
         Main.shopManager.registerShop(shop);
 
-        player.sendMessage(Main.messager.getMessage("shop-created", shop));
+        player.sendMessage(Main.configMessager.getMessage("shop-created", shop));
       }
     }
     shopCreationQueue.remove(player);

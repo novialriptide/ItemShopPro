@@ -16,13 +16,13 @@ import org.bukkit.inventory.ItemStack;
 public class CommandCreateShop implements TabExecutor {
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!(sender instanceof Player)) {
-      sender.sendMessage(Main.messager.getMessage("must-be-player"));
+      sender.sendMessage(Main.configMessager.getMessage("must-be-player"));
       return true;
     }
 
     if (label.equalsIgnoreCase("createshop")) {
       if (args.length != 4) {
-        sender.sendMessage(Main.messager.getMessage("not-enough-arguments"));
+        sender.sendMessage(Main.configMessager.getMessage("not-enough-arguments"));
         return true;
       }
 
@@ -35,7 +35,7 @@ public class CommandCreateShop implements TabExecutor {
       CmdCreateShopSign.shopCreationQueue.put(
           player,
           new QueueCmdShopCreate(Bukkit.getOfflinePlayer(player.getUniqueId()), product, currency));
-      player.sendMessage(Main.messager.getMessage("cmd-create-sign"));
+      player.sendMessage(Main.configMessager.getMessage("cmd-create-sign"));
     }
 
     return true;

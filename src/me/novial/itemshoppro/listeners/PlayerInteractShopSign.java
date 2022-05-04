@@ -42,24 +42,24 @@ public class PlayerInteractShopSign implements Listener {
     /** Check if the player is blocked. * */
     if (shop.blockedPlayers.contains(player)) {
       String ownerName = shop.owner.getName();
-      player.sendMessage(Main.messager.getMessage("shop-blocked"));
+      player.sendMessage(Main.configMessager.getMessage("shop-blocked"));
       return;
     }
 
     if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
       if (!shop.inStock()) {
-        player.sendMessage(Main.messager.getMessage("out-of-stock", shop));
+        player.sendMessage(Main.configMessager.getMessage("out-of-stock", shop));
         return;
       }
 
       boolean success = shop.purchaseItem(player);
       if (success) {
-        player.sendMessage(Main.messager.getMessage("transaction-complete", shop));
+        player.sendMessage(Main.configMessager.getMessage("transaction-complete", shop));
       } else {
-        player.sendMessage(Main.messager.getMessage("not-enough", shop));
+        player.sendMessage(Main.configMessager.getMessage("not-enough", shop));
       }
     } else if (action.equals(Action.LEFT_CLICK_BLOCK)) {
-      player.sendMessage(Main.messager.getMessage("shop-data", shop));
+      player.sendMessage(Main.configMessager.getMessage("shop-data", shop));
     }
   }
 }

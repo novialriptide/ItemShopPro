@@ -43,7 +43,7 @@ public class LockChest implements Listener {
     }
 
     if (!(player.getUniqueId().equals(shop.owner.getUniqueId()))) {
-      player.sendMessage(Main.messager.getMessage("shop-access-denied-open", shop));
+      player.sendMessage(Main.configMessager.getMessage("shop-access-denied-open", shop));
       event.setCancelled(true);
       return;
     }

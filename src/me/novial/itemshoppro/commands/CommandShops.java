@@ -17,24 +17,24 @@ public class CommandShops implements CommandExecutor {
       }
 
       if (args.length != 1) {
-        sender.sendMessage(Main.messager.getMessage("not-enough-arguments"));
+        sender.sendMessage(Main.configMessager.getMessage("not-enough-arguments"));
         return true;
       }
 
       if (Integer.parseInt(args[0]) <= 0) {
-        sender.sendMessage(Main.messager.getMessage("incorrect-arguments"));
+        sender.sendMessage(Main.configMessager.getMessage("incorrect-arguments"));
         return true;
       }
 
       page = Integer.parseInt(args[0]);
 
-      sender.sendMessage(Main.messager.getMessage("shoplist", Main.shopManager));
+      sender.sendMessage(Main.configMessager.getMessage("shoplist", Main.shopManager));
 
       int pageMax = Main.configConfig.getInt("shoplist-max");
 
       for (int i = (page - 1) * pageMax; i > page * pageMax; i++) {
         Shop shop = Main.shopManager.shops.get(i);
-        sender.sendMessage(Main.messager.getMessage("shoplist-format", shop));
+        sender.sendMessage(Main.configMessager.getMessage("shoplist-format", shop));
       }
     }
 

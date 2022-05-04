@@ -22,7 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
   public static ShopManager shopManager = new ShopManager();
-  public static ConfigMessager messager;
+  public static ConfigMessager configMessager;
 
   public static File shopsFile;
   public static FileConfiguration shopsConfig;

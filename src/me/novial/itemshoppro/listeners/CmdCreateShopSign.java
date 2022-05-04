@@ -22,7 +22,7 @@ public class CmdCreateShopSign implements Listener {
 
   private void removePlayerFromQueue(Player player) {
     shopCreationQueue.remove(player);
-    player.sendMessage(Main.messager.getMessage("exit-cmd-shop-create"));
+    player.sendMessage(Main.configMessager.getMessage("exit-cmd-shop-create"));
   }
 
   @EventHandler
@@ -50,7 +50,7 @@ public class CmdCreateShopSign implements Listener {
 
     /** Check if sign exists on that location. * */
     if (Main.shopManager.findShopFromSign(sign) != null) {
-      player.sendMessage(Main.messager.getMessage("shop-already-exists"));
+      player.sendMessage(Main.configMessager.getMessage("shop-already-exists"));
       removePlayerFromQueue(player);
       return;
     }
@@ -84,7 +84,7 @@ public class CmdCreateShopSign implements Listener {
             queue.player, queue.product, queue.currency, (Chest) blockBehindSign.getState(), sign);
     Main.shopManager.registerShop(shop);
 
-    player.sendMessage(Main.messager.getMessage("shop-created", shop));
+    player.sendMessage(Main.configMessager.getMessage("shop-created", shop));
     removePlayerFromQueue(player);
   }
 }

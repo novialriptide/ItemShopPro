@@ -37,7 +37,7 @@ public class DeleteShopSign implements Listener {
     }
 
     if (!(player.getUniqueId().equals(shop.owner.getUniqueId()))) {
-      player.sendMessage(Main.messager.getMessage("shop-access-denied-destroy", shop));
+      player.sendMessage(Main.configMessager.getMessage("shop-access-denied-destroy", shop));
       event.setCancelled(true);
       return;
     }
@@ -46,6 +46,6 @@ public class DeleteShopSign implements Listener {
     Main.shopsConfig.save(Main.shopsFile);
     Main.shopManager.shops.remove(shop);
 
-    player.sendMessage(Main.messager.getMessage("shop-deleted"));
+    player.sendMessage(Main.configMessager.getMessage("shop-deleted"));
   }
 }
