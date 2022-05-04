@@ -10,5 +10,9 @@ commands:
     permission: itemshoppro.info
   createshop:
     description: Creates a shop.
-    usage: /<command> productQuantity product currencyQuantity currency
+    usage: /<command> <Product Quantity> <Product> <Currency Quantity> <Currency>
     permission: itemshoppro.createshop
+  shops:
+    description: Gives a list of registered shops
+    usage: /<command> <Page>
+    permission: itemshoppro.shops

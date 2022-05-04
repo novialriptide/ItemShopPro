@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import me.novial.itemshoppro.commands.CommandCreateShop;
 import me.novial.itemshoppro.commands.CommandItemShopPro;
+import me.novial.itemshoppro.commands.CommandShops;
 import me.novial.itemshoppro.listeners.CmdCreateShopSign;
 import me.novial.itemshoppro.listeners.CreateShopSign;
 import me.novial.itemshoppro.listeners.DeleteShopSign;
@@ -49,6 +50,7 @@ public class Main extends JavaPlugin {
     commandSender.sendMessage("[ItemShopPro] Loading commands...");
     getCommand("itemshoppro").setExecutor((new CommandItemShopPro()));
     getCommand("createshop").setExecutor((new CommandCreateShop()));
+    getCommand("shops").setExecutor((new CommandShops()));
     commandSender.sendMessage("[ItemShopPro] Loaded commands");
 
     commandSender.sendMessage("[ItemShopPro] Loading event listeners...");

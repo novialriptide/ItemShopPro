@@ -4,6 +4,7 @@ prefix: "&8[&eItemShopPro&8]"
 ## Messages
 must-be-player: "&cYou must be a player to perform this command."
 not-enough-arguments: "&cNot enough arguments!"
+incorrect-arguments: "&cIncorrect arguments!"
 invalid-product-quantity: "&cInvalid product quantity."
 invalid-currency-quantity: "&cInvalid currency quantity."
 invalid-product: "&cInvalid product item."
@@ -14,27 +15,25 @@ config-reload-complete: "&aReload complete!"
 cmd-create-sign: "&eRight-click a sign to create a shop."
 exit-cmd-shop-create: "&cExiting shop creation."
 shop-already-exists: "&cYou are conflicting over an existing shop."
-
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 shop-created: "&aCreated shop."
 
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
+# The following settings can use these variables:
+# - %GLOBAL_SHOPS_QUANTITY%
+
+shoplist: "&7There are %GLOBAL_SHOPS_QUANTITY% shop(s) registered"
+
+# The following settings can use these variables:
+# - %PRODUCT_QUANTITY%
+# - %PRODUCT_NAME%
+# - %CURRENCY_QUANTITY%
+# - %CURRENCY_NAME%
+# - %OWNER_NAME%
+
+shoplist-format: "&c%OWNER_NAME%&7 - Selling &c%PRODUCT_QUANTITY% %PRODUCT_NAME% &7for &c%CURRENCY_QUANTITY% %CURRENCY_NAME%"
 transaction-complete: "&aYou have purchased %PRODUCT_QUANTITY% %PRODUCT_NAME% for %CURRENCY_QUANTITY% %CURRENCY_NAME%."
-
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 out-of-stock: "&cThis shop is out of stock."
-
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 shop-blocked: "&cYou are blocked from using %OWNER_NAME%'s shops."
-
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 shop-access-denied-open: "&cYou do not have permission to open shops by %OWNER_NAME%"
-
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 shop-access-denied-destroy: "&cYou do not have permission to destroy shops by %OWNER_NAME%"
-
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 not-enough: "&cYou don't have enough %CURRENCY_NAME%(s)."
-
-# %PRODUCT_QUANTITY%, %PRODUCT_NAME%, %CURRENCY_QUANTITY%, %CURRENCY_NAME%, %OWNER_NAME%
 shop-data: "&cThis shop is owned by %OWNER_NAME%, selling %PRODUCT_QUANTITY% %PRODUCT_NAME%(s) for %CURRENCY_QUANTITY% %CURRENCY_NAME%(s)."
