@@ -4,6 +4,7 @@
     <img src="https://img.shields.io/github/license/novialriptide/ItemShopPro?style=for-the-badge" alt="License">
     <img src="https://img.shields.io/badge/Spigot_API_Version-1.13-orange?style=for-the-badge" alt="Spigot API Version">
     <img src="https://img.shields.io/badge/JDK-1.8.0-orange?style=for-the-badge" alt="JDK Version">
+    <img src="https://wakatime.com/badge/user/9797ee4f-4108-45bb-8fc2-b36b9c1a1c89/project/75563b25-6f41-42d3-bfff-e69bbf696b02.svg?style=for-the-badge" alt="Wakatime">
 </div>
 
 ## Features
